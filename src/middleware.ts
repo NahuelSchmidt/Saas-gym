@@ -1,42 +1,50 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/middleware";
+import { createServerClient } from "@supabase/ssr";
 
 export async function middleware(request: NextRequest) {
-  const { supabase, supabaseResponse } = await createClient(request);
+  let supabaseResponse = NextResponse.next({ request });
 
-  // Mandatory: refresh session on every request
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          );
+          supabaseResponse = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
+
+  const { data: { user } } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
 
-  // Protect /dashboard/** — redirect to login if not authenticated
-  if (pathname.startsWith("/dashboard")) {
-    if (!user) {
-      const loginUrl = request.nextUrl.clone();
-      loginUrl.pathname = "/auth/login";
-      loginUrl.searchParams.set("redirectedFrom", pathname);
-      return NextResponse.redirect(loginUrl);
-    }
+  if (pathname.startsWith("/dashboard") && !user) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/auth/login";
+    return NextResponse.redirect(url);
   }
 
-  // Redirect authenticated users away from /auth/**
-  if (pathname.startsWith("/auth")) {
-    if (user) {
-      const dashboardUrl = request.nextUrl.clone();
-      dashboardUrl.pathname = "/dashboard";
-      dashboardUrl.search = "";
-      return NextResponse.redirect(dashboardUrl);
-    }
+  if (pathname.startsWith("/auth") && user) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/dashboard";
+    return NextResponse.redirect(url);
   }
 
-  // Redirect root to dashboard or login
   if (pathname === "/") {
-    const target = request.nextUrl.clone();
-    target.pathname = user ? "/dashboard" : "/auth/login";
-    target.search = "";
-    return NextResponse.redirect(target);
+    const url = request.nextUrl.clone();
+    url.pathname = user ? "/dashboard" : "/auth/login";
+    return NextResponse.redirect(url);
   }
 
   return supabaseResponse;
@@ -44,6 +52,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|api/webhooks|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };
