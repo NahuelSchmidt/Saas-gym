@@ -194,13 +194,17 @@ export async function assignMembershipAction(
     const end = new Date(start);
     end.setDate(end.getDate() + plan.duration_days - 1);
 
+    const endDate = end.toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0];
+    const status = endDate < today ? "VENCIDO" : "ACTIVO";
+
     const payload: MembershipInsert = {
       gym_id: gymId,
       member_id: memberId,
       plan_id: planId,
       start_date: startDate,
-      end_date: end.toISOString().split("T")[0],
-      status: "ACTIVO",
+      end_date: endDate,
+      status,
       paused_at: null,
       pause_days_used: 0,
       notes: null,

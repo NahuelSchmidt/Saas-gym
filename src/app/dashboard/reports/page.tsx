@@ -7,6 +7,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 import ReportsExportButton from "./ReportsExportButton";
+import ActivityCharts from "./ActivityCharts";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Reportes" };
@@ -47,6 +48,15 @@ export default async function ReportsPage({
       .order("entry_time", { ascending: false });
 
     reportData = data ?? [];
+  } else if (tab === "actividad") {
+    const { data } = await supabase
+      .from("access_logs")
+      .select("entry_time, access_granted")
+      .gte("entry_time", fromDate)
+      .lte("entry_time", toDate + "T23:59:59")
+      .order("entry_time", { ascending: true });
+
+    reportData = data ?? [];
   } else if (tab === "miembros") {
     const { data } = await supabase
       .from("members")
@@ -61,28 +71,29 @@ export default async function ReportsPage({
     { id: "cobros", label: "Cobros" },
     { id: "asistencia", label: "Asistencia" },
     { id: "miembros", label: "Miembros" },
+    { id: "actividad", label: "Actividad" },
   ];
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Reportes</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Reportes</h1>
           <p className="mt-1 text-sm text-gray-500">Analizá la actividad de tu gimnasio</p>
         </div>
         <ReportsExportButton tab={tab} from={fromDate} to={toDate} data={reportData} />
       </div>
 
       {/* Tab bar */}
-      <div className="flex gap-1 bg-gray-100 p-1 rounded-lg w-fit">
+      <div className="flex gap-1 bg-gray-100 dark:bg-white/10 p-1 rounded-lg w-fit">
         {tabs.map((t) => (
           <a
             key={t.id}
             href={`?tab=${t.id}&from=${fromDate}&to=${toDate}`}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               tab === t.id
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
+                ? "bg-white dark:bg-[hsl(220,10%,26%)] text-gray-900 dark:text-gray-100 shadow-sm"
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
             }`}
           >
             {t.label}
@@ -94,21 +105,21 @@ export default async function ReportsPage({
       <form className="flex items-center gap-3 flex-wrap">
         <input type="hidden" name="tab" value={tab} />
         <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600">Desde</label>
+          <label className="text-sm text-gray-600 dark:text-gray-400">Desde</label>
           <input
             type="date"
             name="from"
             defaultValue={fromDate}
-            className="border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 dark:border-white/10 rounded-md px-3 py-1.5 text-sm bg-white dark:bg-[hsl(220,10%,22%)] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600">Hasta</label>
+          <label className="text-sm text-gray-600 dark:text-gray-400">Hasta</label>
           <input
             type="date"
             name="to"
             defaultValue={toDate}
-            className="border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 dark:border-white/10 rounded-md px-3 py-1.5 text-sm bg-white dark:bg-[hsl(220,10%,22%)] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         <button
@@ -127,7 +138,7 @@ export default async function ReportsPage({
               <CardTitle className="text-sm font-medium text-gray-500">Total del período</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold text-gray-900">{formatCurrency(totalAmount)}</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{formatCurrency(totalAmount)}</p>
             </CardContent>
           </Card>
           <Card>
@@ -135,7 +146,7 @@ export default async function ReportsPage({
               <CardTitle className="text-sm font-medium text-gray-500">Cantidad de cobros</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold text-gray-900">{reportData.length}</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{reportData.length}</p>
             </CardContent>
           </Card>
           <Card>
@@ -143,7 +154,7 @@ export default async function ReportsPage({
               <CardTitle className="text-sm font-medium text-gray-500">Ticket promedio</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 {reportData.length > 0 ? formatCurrency(totalAmount / reportData.length) : "$0"}
               </p>
             </CardContent>
@@ -151,8 +162,13 @@ export default async function ReportsPage({
         </div>
       )}
 
+      {/* Actividad */}
+      {tab === "actividad" && (
+        <ActivityCharts logs={reportData as { entry_time: string; access_granted: boolean }[]} />
+      )}
+
       {/* Report tables */}
-      <Card>
+      {tab !== "actividad" && <Card>
         <CardContent className="p-0">
           {tab === "cobros" && (
             <Table>
@@ -304,7 +320,7 @@ export default async function ReportsPage({
             </Table>
           )}
         </CardContent>
-      </Card>
+      </Card>}
     </div>
   );
 }

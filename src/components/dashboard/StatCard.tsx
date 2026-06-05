@@ -17,12 +17,12 @@ interface StatCardProps {
 }
 
 const colorMap: Record<ColorScheme, { iconBg: string; iconColor: string }> = {
-  blue:   { iconBg: "bg-blue-50",    iconColor: "text-blue-600" },
-  green:  { iconBg: "bg-emerald-50", iconColor: "text-emerald-600" },
-  violet: { iconBg: "bg-violet-50",  iconColor: "text-violet-600" },
-  red:    { iconBg: "bg-red-50",     iconColor: "text-red-600" },
-  amber:  { iconBg: "bg-amber-50",   iconColor: "text-amber-600" },
-  gray:   { iconBg: "bg-gray-100",   iconColor: "text-gray-600" },
+  blue:   { iconBg: "bg-blue-50 dark:bg-blue-500/20",    iconColor: "text-blue-600 dark:text-blue-400" },
+  green:  { iconBg: "bg-emerald-50 dark:bg-emerald-500/20", iconColor: "text-emerald-600 dark:text-emerald-400" },
+  violet: { iconBg: "bg-violet-50 dark:bg-violet-500/20",  iconColor: "text-violet-600 dark:text-violet-400" },
+  red:    { iconBg: "bg-red-50 dark:bg-red-500/20",     iconColor: "text-red-600 dark:text-red-400" },
+  amber:  { iconBg: "bg-amber-50 dark:bg-amber-500/20",   iconColor: "text-amber-600 dark:text-amber-400" },
+  gray:   { iconBg: "bg-gray-100 dark:bg-white/10",   iconColor: "text-gray-600 dark:text-gray-400" },
 };
 
 export function StatCard({
@@ -36,12 +36,12 @@ export function StatCard({
   const colors = colorMap[colorScheme];
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm flex items-start justify-between gap-4 hover:shadow-md transition-shadow">
+    <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 p-5 shadow-sm flex items-start justify-between gap-4 hover:shadow-md transition-shadow">
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{title}</p>
-        <p className="mt-2 text-2xl font-bold text-gray-900 leading-none truncate">{value}</p>
+        <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">{title}</p>
+        <p className="mt-2 text-2xl font-bold text-gray-900 dark:text-gray-100 leading-none truncate">{value}</p>
         <div className="mt-2 flex items-center gap-2 flex-wrap">
-          {subtitle && <p className="text-xs text-gray-500">{subtitle}</p>}
+          {subtitle && <p className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</p>}
           {trend && (
             <span
               className={`inline-flex items-center gap-0.5 text-xs font-semibold px-1.5 py-0.5 rounded-full ${

@@ -1,12 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, useTransition } from "react";
-import { Search, CheckCircle2, XCircle, Clock, LogOut, Loader2, User } from "lucide-react";
+import { Search, CheckCircle2, XCircle, Clock, Loader2, User, MapPin } from "lucide-react";
 import { cn, getInitials, formatDate } from "@/lib/utils";
 import {
-  searchMembersAction,
   checkAccessAction,
-  registerExitAction,
   type MemberSearchResult,
   type AccessResult,
 } from "./actions";
@@ -16,7 +14,7 @@ import {
 type UIState =
   | { screen: "search" }
   | { screen: "loading"; memberName: string }
-  | { screen: "result"; result: AccessResult; memberId: string };
+  | { screen: "result"; result: AccessResult };
 
 // ── Avatar ────────────────────────────────────────────────────────────────────
 
@@ -81,7 +79,7 @@ function MemberCard({
       ? "bg-emerald-100 text-emerald-700"
       : member.status === "SUSPENDIDO"
         ? "bg-red-100 text-red-700"
-        : "bg-gray-100 text-gray-500";
+        : "bg-gray-100 dark:bg-white/10 text-gray-500";
 
   return (
     <button
@@ -89,7 +87,7 @@ function MemberCard({
       disabled={isLoading}
       className={cn(
         "w-full flex items-center gap-4 px-5 py-4 rounded-2xl",
-        "bg-white border border-gray-200 shadow-sm",
+        "bg-white border border-gray-200 dark:border-white/10 shadow-sm",
         "hover:border-blue-400 hover:shadow-md hover:bg-blue-50/40",
         "active:scale-[0.98] transition-all text-left",
         "disabled:opacity-60 disabled:cursor-not-allowed",
@@ -112,7 +110,7 @@ function MemberCard({
 
       {/* Info */}
       <div className="flex-1 min-w-0">
-        <p className="text-lg font-semibold text-gray-900 truncate">
+        <p className="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
           {member.first_name} {member.last_name}
         </p>
         {member.dni && (
@@ -135,24 +133,54 @@ function MemberCard({
 
 // ── ResultScreen ──────────────────────────────────────────────────────────────
 
+function playAccessSound(granted: boolean) {
+  try {
+    const ctx = new AudioContext();
+    const gain = ctx.createGain();
+    gain.connect(ctx.destination);
+
+    if (granted) {
+      // Dos beeps cortos y agradables (tono alto)
+      [0, 0.15].forEach((start) => {
+        const osc = ctx.createOscillator();
+        osc.type = "sine";
+        osc.frequency.value = 880;
+        osc.connect(gain);
+        gain.gain.setValueAtTime(0.4, ctx.currentTime + start);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + 0.12);
+        osc.start(ctx.currentTime + start);
+        osc.stop(ctx.currentTime + start + 0.12);
+      });
+    } else {
+      // Dos beeps graves y cortos (tono bajo)
+      [0, 0.25].forEach((start) => {
+        const osc = ctx.createOscillator();
+        osc.type = "square";
+        osc.frequency.value = 220;
+        osc.connect(gain);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + start);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + 0.18);
+        osc.start(ctx.currentTime + start);
+        osc.stop(ctx.currentTime + start + 0.18);
+      });
+    }
+  } catch {
+    // Web Audio no disponible
+  }
+}
+
 function ResultScreen({
   result,
-  memberId,
   onBack,
-  onRegisterExit,
 }: {
   result: AccessResult;
-  memberId: string;
   onBack: () => void;
-  onRegisterExit: (memberId: string) => void;
 }) {
-  const [countdown, setCountdown] = useState(4);
-  const [exitDone, setExitDone] = useState(false);
-  const [exitLoading, setExitLoading] = useState(false);
+  const [countdown, setCountdown] = useState(3);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Auto-dismiss after 4 seconds
   useEffect(() => {
+    playAccessSound(result.granted);
     intervalRef.current = setInterval(() => {
       setCountdown((c) => {
         if (c <= 1) {
@@ -164,17 +192,7 @@ function ResultScreen({
       });
     }, 1000);
     return () => clearInterval(intervalRef.current!);
-  }, [onBack]);
-
-  async function handleExit() {
-    if (exitLoading || exitDone) return;
-    clearInterval(intervalRef.current!);
-    setExitLoading(true);
-    await onRegisterExit(memberId);
-    setExitLoading(false);
-    setExitDone(true);
-    setTimeout(onBack, 2000);
-  }
+  }, [onBack, result.granted]);
 
   const isGranted = result.granted;
 
@@ -191,17 +209,9 @@ function ResultScreen({
       {/* Countdown ring */}
       <div className="absolute top-6 right-6">
         <div
-          className={cn(
-            "w-14 h-14 rounded-full border-4 flex items-center justify-center",
-            "text-white font-bold text-xl",
-            isGranted ? "border-white/40" : "border-white/40"
-          )}
+          className="w-14 h-14 rounded-full border-4 border-white/40 flex items-center justify-center text-white font-bold text-xl"
         >
-          {exitDone ? (
-            <CheckCircle2 className="w-6 h-6 text-white" />
-          ) : (
-            countdown
-          )}
+          {countdown}
         </div>
       </div>
 
@@ -263,29 +273,6 @@ function ResultScreen({
         </div>
       )}
 
-      {/* Register exit button */}
-      {isGranted && result.granted && (
-        <button
-          onClick={handleExit}
-          disabled={exitLoading || exitDone}
-          className={cn(
-            "flex items-center gap-3 px-8 py-4 rounded-2xl text-lg font-semibold",
-            "bg-white/20 border-2 border-white/40 text-white",
-            "hover:bg-white/30 active:scale-95 transition-all",
-            "disabled:opacity-60 disabled:cursor-not-allowed shadow-lg"
-          )}
-        >
-          {exitLoading ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : exitDone ? (
-            <CheckCircle2 className="w-5 h-5" />
-          ) : (
-            <LogOut className="w-5 h-5" />
-          )}
-          {exitDone ? "Salida registrada" : "Registrar salida"}
-        </button>
-      )}
-
       {/* Back button */}
       <button
         onClick={() => {
@@ -323,83 +310,110 @@ function LoadingScreen({ memberName }: { memberName: string }) {
 
 // ── Main AccessControl ────────────────────────────────────────────────────────
 
-export function AccessControl() {
+export function AccessControl({ branches, members = [] }: { branches: { id: string; name: string }[]; members: MemberSearchResult[] }) {
+  console.log("AccessControl members:", members.length);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<MemberSearchResult[]>([]);
-  const [searching, setSearching] = useState(false);
   const [uiState, setUiState] = useState<UIState>({ screen: "search" });
-  const [enterPending, setEnterPending] = useState(false);
   const [, startTransition] = useTransition();
+  const [branchId, setBranchId] = useState<string | null>(null);
+  const [branchName, setBranchName] = useState<string | null>(null);
 
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const processingRef = useRef(false);
+
+  // Load saved branch from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("branch_id");
+    const savedName = localStorage.getItem("branch_name");
+    if (saved && savedName) {
+      setBranchId(saved);
+      setBranchName(savedName);
+    }
+  }, []);
+
+  function selectBranch(id: string, name: string) {
+    localStorage.setItem("branch_id", id);
+    localStorage.setItem("branch_name", name);
+    setBranchId(id);
+    setBranchName(name);
+  }
+
+  function clearBranch() {
+    localStorage.removeItem("branch_id");
+    localStorage.removeItem("branch_name");
+    setBranchId(null);
+    setBranchName(null);
+  }
 
   // Select member → check access
   const handleSelectMember = useCallback(async (member: MemberSearchResult) => {
+    if (processingRef.current) return;
+    processingRef.current = true;
+
     const fullName = `${member.first_name} ${member.last_name}`;
     setUiState({ screen: "loading", memberName: fullName });
 
-    const result = await checkAccessAction(member.id);
-    setUiState({ screen: "result", result, memberId: member.id });
-  }, []);
+    const result = await checkAccessAction(member.id, branchId);
+    setUiState({ screen: "result", result });
+    processingRef.current = false;
+  }, [branchId]);
 
   const handleSelectMemberRef = useRef(handleSelectMember);
   handleSelectMemberRef.current = handleSelectMember;
 
-  // Debounced search
+  // Filtrado local instantáneo
   const handleQueryChange = useCallback((value: string) => {
     setQuery(value);
+    const q = value.trim();
 
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-
-    if (value.trim().length < 2) {
+    if (q.length < 2) {
       setResults([]);
-      setSearching(false);
       return;
     }
 
-    setSearching(true);
-    debounceRef.current = setTimeout(async () => {
-      startTransition(async () => {
-        const found = await searchMembersAction(value.trim());
-        setResults(found);
-        setSearching(false);
-        setEnterPending((pending) => {
-          if (pending && found.length > 0) {
-            handleSelectMemberRef.current(found[0]);
-            return false;
-          }
-          return false;
-        });
-      });
-    }, 300);
-  }, []);
+    const qLower = q.toLowerCase();
+    const isNumeric = /^\d+$/.test(q);
+    const filtered = members.filter((m) => {
+      if (isNumeric) {
+        return (m.dni ?? "").includes(q);
+      }
+      const fullName = `${m.first_name} ${m.last_name}`.toLowerCase();
+      return fullName.includes(qLower) || (m.dni ?? "").includes(q);
+    }).slice(0, 8);
+
+    setResults(filtered);
+  }, [members]);
 
   // Return to search screen
   const handleBack = useCallback(() => {
     setQuery("");
     setResults([]);
     setUiState({ screen: "search" });
-    // Re-focus input after a tick so any animation has settled
+    processingRef.current = false;
     setTimeout(() => inputRef.current?.focus(), 50);
   }, []);
 
-  // Register exit
-  const handleRegisterExit = useCallback(async (memberId: string) => {
-    await registerExitAction(memberId);
-  }, []);
-
-  // Enter key → select first result, or mark pending if still searching
+  // Enter key
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key !== "Enter") return;
-      if (results.length > 0) {
-        handleSelectMember(results[0]);
-      } else if (searching) {
-        setEnterPending(true);
+      const current = query.trim();
+      if (current.length < 2) return;
+
+      const isNumeric = /^\d+$/.test(current);
+      const exactMatch = isNumeric
+        ? results.find((r) => r.dni === current)
+        : results[0];
+
+      if (exactMatch) {
+        handleSelectMember(exactMatch);
+      } else {
+        const denied: AccessResult = { granted: false, memberName: "Usuario no encontrado", reason: "El DNI o nombre no está registrado en el sistema" };
+        setUiState({ screen: "result", result: denied });
       }
     },
-    [results, searching, handleSelectMember]
+    [results, query, handleSelectMember]
   );
 
   // Clear search
@@ -419,9 +433,7 @@ export function AccessControl() {
     return (
       <ResultScreen
         result={uiState.result}
-        memberId={uiState.memberId}
         onBack={handleBack}
-        onRegisterExit={handleRegisterExit}
       />
     );
   }
@@ -435,26 +447,51 @@ export function AccessControl() {
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-600 shadow-lg mb-4">
           <Search className="w-8 h-8 text-white" />
         </div>
-        <h2 className="text-3xl font-black text-gray-900 tracking-tight">Control de Acceso</h2>
-        <p className="text-gray-500 mt-1.5 text-base">Portería del gimnasio</p>
+        <h2 className="text-3xl font-black text-gray-900 dark:text-gray-100 tracking-tight">Control de Acceso</h2>
+        {branches.length > 0 && (
+          branchId ? (
+            <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 text-sm font-medium">
+              <MapPin className="w-3.5 h-3.5" />
+              {branchName}
+              <button onClick={clearBranch} className="ml-1 text-blue-400 hover:text-blue-600 text-xs underline">
+                cambiar
+              </button>
+            </div>
+          ) : (
+            <div className="mt-4 space-y-2">
+              <p className="text-sm text-gray-500 dark:text-gray-400">Seleccioná la sucursal de esta tablet</p>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {branches.map((b) => (
+                  <button
+                    key={b.id}
+                    onClick={() => selectBranch(b.id, b.name)}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 border-blue-300 dark:border-blue-500/50 text-blue-700 dark:text-blue-400 text-sm font-semibold hover:bg-blue-50 dark:hover:bg-blue-500/20 transition-colors"
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    {b.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )
+        )}
+        {branches.length === 0 && (
+          <p className="text-gray-500 mt-1.5 text-base">Portería del gimnasio</p>
+        )}
       </div>
 
       {/* Search box */}
       <div className="w-full max-w-2xl relative mb-6">
         <div
           className={cn(
-            "flex items-center gap-3 rounded-2xl border-2 bg-white shadow-sm px-5 py-4",
+            "flex items-center gap-3 rounded-2xl border-2 bg-white dark:bg-[hsl(220,10%,20%)] shadow-sm px-5 py-4",
             "transition-all duration-200",
             query
               ? "border-blue-500 shadow-blue-100 shadow-md"
-              : "border-gray-200 hover:border-gray-300"
+              : "border-gray-200 dark:border-white/10 hover:border-gray-300"
           )}
         >
-          {searching ? (
-            <Loader2 className="w-6 h-6 text-blue-500 shrink-0 animate-spin" />
-          ) : (
-            <Search className="w-6 h-6 text-gray-400 shrink-0" />
-          )}
+          <Search className="w-6 h-6 text-gray-400 shrink-0" />
           <input
             ref={inputRef}
             autoFocus
@@ -466,13 +503,13 @@ export function AccessControl() {
             placeholder="Buscar por nombre o DNI…"
             className={cn(
               "flex-1 text-xl font-medium bg-transparent outline-none",
-              "placeholder:text-gray-300 text-gray-900"
+              "placeholder:text-gray-300 text-gray-900 dark:text-gray-100"
             )}
           />
           {query && (
             <button
               onClick={handleClear}
-              className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
+              className="p-1.5 rounded-full hover:bg-gray-100 dark:bg-white/10 text-gray-400 hover:text-gray-600 transition-colors"
               aria-label="Limpiar búsqueda"
             >
               <XCircle className="w-5 h-5" />
@@ -484,7 +521,7 @@ export function AccessControl() {
       {/* Results */}
       <div className="w-full max-w-2xl space-y-3">
         {/* Empty state while typing */}
-        {!searching && query.trim().length >= 2 && results.length === 0 && (
+        {query.trim().length >= 2 && results.length === 0 && (
           <div className="flex flex-col items-center justify-center py-14 gap-3 text-gray-400">
             <User className="w-12 h-12 opacity-40" />
             <p className="text-lg font-medium">Sin resultados para &ldquo;{query}&rdquo;</p>
@@ -506,7 +543,7 @@ export function AccessControl() {
             key={member.id}
             member={member}
             onSelect={handleSelectMember}
-            isLoading={uiState.screen === "loading"}
+            isLoading={false}
           />
         ))}
       </div>

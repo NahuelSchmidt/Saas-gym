@@ -156,7 +156,7 @@ export default async function PaymentsPage({
       {/* Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Pagos</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Pagos</h1>
           <p className="mt-1 text-sm text-gray-500">
             Gestión de cobros y estado de membresías
           </p>
@@ -256,13 +256,13 @@ export default async function PaymentsPage({
                     <TableRow key={payment.id}>
                       <TableCell>
                         <div>
-                          <p className="font-medium text-gray-900">{memberName}</p>
+                          <p className="font-medium text-gray-900 dark:text-gray-100">{memberName}</p>
                           {planName && (
                             <p className="text-xs text-muted-foreground">{planName}</p>
                           )}
                         </div>
                       </TableCell>
-                      <TableCell className="font-semibold text-gray-900">
+                      <TableCell className="font-semibold text-gray-900 dark:text-gray-100">
                         {formatCurrency(payment.amount)}
                       </TableCell>
                       <TableCell className="text-sm text-gray-600">
@@ -364,7 +364,7 @@ function SummaryCard({
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
             {label}
           </p>
-          <p className="mt-0.5 truncate text-xl font-bold text-gray-900">{value}</p>
+          <p className="mt-0.5 truncate text-xl font-bold text-gray-900 dark:text-gray-100">{value}</p>
           <p className="mt-0.5 truncate text-xs text-muted-foreground">{sub}</p>
         </div>
       </CardContent>

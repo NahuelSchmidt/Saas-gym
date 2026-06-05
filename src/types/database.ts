@@ -117,10 +117,21 @@ export interface Payment {
   created_at: string;
 }
 
+export interface Branch {
+  id: string;
+  gym_id: string;
+  name: string;
+  address: string | null;
+  phone: string | null;
+  is_active: boolean;
+  created_at: string;
+}
+
 export interface AccessLog {
   id: string;
   gym_id: string;
   member_id: string;
+  branch_id: string | null;
   entry_time: string;
   exit_time: string | null;
   access_granted: boolean;
@@ -158,17 +169,18 @@ export type NotificationInsert = Omit<Notification, "id" | "created_at">;
 export interface Database {
   public: {
     Tables: {
-      gyms: { Row: Gym; Insert: Partial<Gym>; Update: Partial<Gym> };
-      profiles: { Row: Profile; Insert: Partial<Profile>; Update: Partial<Profile> };
-      members: { Row: Member; Insert: MemberInsert; Update: MemberUpdate };
-      plans: { Row: Plan; Insert: PlanInsert; Update: PlanUpdate };
-      memberships: { Row: Membership; Insert: MembershipInsert; Update: MembershipUpdate };
-      payments: { Row: Payment; Insert: PaymentInsert; Update: PaymentUpdate };
-      access_logs: { Row: AccessLog; Insert: AccessLogInsert; Update: never };
-      notifications: { Row: Notification; Insert: NotificationInsert; Update: Partial<NotificationInsert> };
+      gyms: { Row: Gym; Insert: Partial<Gym>; Update: Partial<Gym>; Relationships: [] };
+      profiles: { Row: Profile; Insert: Partial<Profile>; Update: Partial<Profile>; Relationships: [] };
+      members: { Row: Member; Insert: MemberInsert; Update: MemberUpdate; Relationships: [] };
+      plans: { Row: Plan; Insert: PlanInsert; Update: PlanUpdate; Relationships: [] };
+      memberships: { Row: Membership; Insert: MembershipInsert; Update: MembershipUpdate; Relationships: [] };
+      payments: { Row: Payment; Insert: PaymentInsert; Update: PaymentUpdate; Relationships: [] };
+      branches: { Row: Branch; Insert: Omit<Branch, "id" | "created_at">; Update: Partial<Omit<Branch, "id" | "created_at">>; Relationships: [] };
+      access_logs: { Row: AccessLog; Insert: AccessLogInsert; Update: Partial<AccessLogInsert>; Relationships: [] };
+      notifications: { Row: Notification; Insert: NotificationInsert; Update: Partial<NotificationInsert>; Relationships: [] };
     };
-    Views: { [_ in never]: never };
-    Functions: { [_ in never]: never };
+    Views: Record<never, never>;
+    Functions: Record<never, never>;
     Enums: {
       profile_role: ProfileRole;
       member_status: MemberStatus;
@@ -176,7 +188,7 @@ export interface Database {
       payment_method: PaymentMethod;
       payment_status: PaymentStatus;
     };
-    CompositeTypes: { [_ in never]: never };
+    CompositeTypes: Record<never, never>;
   };
 }
 

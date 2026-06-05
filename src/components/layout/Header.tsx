@@ -27,11 +27,11 @@ export function Header({ userName, notificationCount = 0 }: HeaderProps) {
   const pageTitle = pageTitles[pathname] ?? "GymFlow";
 
   return (
-    <header className="md:hidden flex items-center gap-3 px-4 py-3 bg-white border-b border-gray-200 shrink-0">
+    <header className="md:hidden flex items-center gap-3 px-4 py-3 bg-white dark:bg-[hsl(220,10%,18%)] border-b border-gray-200 dark:border-white/10 shrink-0">
       <div className="w-9" aria-hidden="true" />
-      <h1 className="flex-1 text-base font-semibold text-gray-900 truncate">{pageTitle}</h1>
+      <h1 className="flex-1 text-base font-semibold text-gray-900 dark:text-gray-100 truncate">{pageTitle}</h1>
       <button
-        className="relative p-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+        className="relative p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:bg-white/10 dark:hover:bg-white/10"
         aria-label="Notificaciones"
       >
         <Bell className="w-5 h-5" />

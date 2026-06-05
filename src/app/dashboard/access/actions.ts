@@ -19,7 +19,6 @@ export interface AccessGranted {
   planName: string;
   endDate: string;
   logId: string;
-  hasOpenEntry: boolean;
 }
 
 export interface AccessDenied {
@@ -30,6 +29,12 @@ export interface AccessDenied {
 }
 
 export type AccessResult = AccessGranted | AccessDenied;
+
+// ── denyUnknownAction ─────────────────────────────────────────────────────────
+
+export async function denyUnknownAction(query: string): Promise<AccessResult> {
+  return { granted: false, memberName: `"${query}"`, reason: "DNI o nombre no encontrado en el sistema" };
+}
 
 // ── searchMembersAction ───────────────────────────────────────────────────────
 
@@ -73,7 +78,7 @@ export async function searchMembersAction(query: string): Promise<MemberSearchRe
 
 // ── checkAccessAction ─────────────────────────────────────────────────────────
 
-export async function checkAccessAction(memberId: string): Promise<AccessResult> {
+export async function checkAccessAction(memberId: string, branchId?: string | null): Promise<AccessResult> {
   const supabase = await createClient();
 
   const {
@@ -118,6 +123,7 @@ export async function checkAccessAction(memberId: string): Promise<AccessResult>
     await supabase.from("access_logs").insert({
       gym_id: gymId,
       member_id: memberId,
+      branch_id: branchId ?? null,
       entry_time: new Date().toISOString(),
       access_granted: false,
       denial_reason: reason,
@@ -145,6 +151,7 @@ export async function checkAccessAction(memberId: string): Promise<AccessResult>
     await supabase.from("access_logs").insert({
       gym_id: gymId,
       member_id: memberId,
+      branch_id: branchId ?? null,
       entry_time: new Date().toISOString(),
       access_granted: false,
       denial_reason: reason,
@@ -204,6 +211,7 @@ export async function checkAccessAction(memberId: string): Promise<AccessResult>
     await supabase.from("access_logs").insert({
       gym_id: gymId,
       member_id: memberId,
+      branch_id: branchId ?? null,
       entry_time: new Date().toISOString(),
       access_granted: false,
       denial_reason: reason,
@@ -211,28 +219,13 @@ export async function checkAccessAction(memberId: string): Promise<AccessResult>
     return { granted: false, memberName, reason };
   }
 
-  // 5. Check if there's already an open entry (no exit_time) for today
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
-
-  const { data: openEntry } = await supabase
-    .from("access_logs")
-    .select("id")
-    .eq("member_id", memberId)
-    .eq("gym_id", gymId)
-    .eq("access_granted", true)
-    .is("exit_time", null)
-    .gte("entry_time", todayStart.toISOString())
-    .order("entry_time", { ascending: false })
-    .limit(1)
-    .single();
-
-  // 6. All checks passed — insert access log
+  // 5. All checks passed — insert access log
   const { data: newLog, error: insertError } = await supabase
     .from("access_logs")
     .insert({
       gym_id: gymId,
       member_id: memberId,
+      branch_id: branchId ?? null,
       entry_time: new Date().toISOString(),
       access_granted: true,
       denial_reason: null,
@@ -250,51 +243,5 @@ export async function checkAccessAction(memberId: string): Promise<AccessResult>
     planName,
     endDate,
     logId: newLog?.id ?? "",
-    hasOpenEntry: !!openEntry,
   };
-}
-
-// ── registerExitAction ────────────────────────────────────────────────────────
-
-export async function registerExitAction(memberId: string): Promise<{ ok: boolean }> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return { ok: false };
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("gym_id")
-    .eq("id", user.id)
-    .single();
-
-  const gymId = profile?.gym_id;
-  if (!gymId) return { ok: false };
-
-  // Find the latest open entry for this member today
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
-
-  const { data: openLog } = await supabase
-    .from("access_logs")
-    .select("id")
-    .eq("member_id", memberId)
-    .eq("gym_id", gymId)
-    .eq("access_granted", true)
-    .is("exit_time", null)
-    .gte("entry_time", todayStart.toISOString())
-    .order("entry_time", { ascending: false })
-    .limit(1)
-    .single();
-
-  if (!openLog) return { ok: false };
-
-  const { error } = await supabase
-    .from("access_logs")
-    .update({ exit_time: new Date().toISOString() } as never)
-    .eq("id", openLog.id);
-
-  return { ok: !error };
 }

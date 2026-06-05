@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
@@ -26,7 +26,7 @@ function formatAxisValue(value: number) {
 function CustomTooltip({ active, payload, label }: TooltipProps<number, string>) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-white border border-gray-200 rounded-xl shadow-lg px-4 py-3">
+    <div className="bg-white border border-gray-200 dark:border-white/10 rounded-xl shadow-lg px-4 py-3">
       <p className="text-xs font-semibold text-gray-500 mb-1">{label}</p>
       <p className="text-base font-bold text-blue-700">
         {formatCurrency(payload[0].value ?? 0)}

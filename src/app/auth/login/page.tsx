@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useFormState, useFormStatus } from "react-dom";
 import Link from "next/link";
@@ -41,7 +41,7 @@ export default function LoginPage() {
   return (
     <div className="w-full max-w-md animate-[fade-in_0.3s_ease-out]">
       {/* Card */}
-      <div className="rounded-2xl bg-white shadow-xl ring-1 ring-slate-200 px-8 py-10">
+      <div className="rounded-2xl bg-white dark:bg-[hsl(220,10%,20%)] shadow-xl ring-1 ring-slate-200 px-8 py-10">
 
         {/* Brand */}
         <div className="mb-8 flex flex-col items-center gap-2">
@@ -82,7 +82,7 @@ export default function LoginPage() {
               autoComplete="email"
               required
               placeholder="tu@email.com"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              className="w-full rounded-xl border border-slate-300 bg-white dark:bg-[hsl(220,10%,20%)] px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
 
@@ -110,7 +110,7 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 required
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 pr-11 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white dark:bg-[hsl(220,10%,20%)] px-4 py-2.5 pr-11 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               />
               <button
                 type="button"
@@ -150,23 +150,6 @@ export default function LoginPage() {
           </div>
         </form>
 
-        {/* Divider */}
-        <div className="my-6 flex items-center gap-3">
-          <div className="h-px flex-1 bg-slate-200" />
-          <span className="text-xs text-slate-400">o</span>
-          <div className="h-px flex-1 bg-slate-200" />
-        </div>
-
-        {/* Register link */}
-        <p className="text-center text-sm text-slate-600">
-          ¿No tenés cuenta?{" "}
-          <Link
-            href="/auth/register"
-            className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
-          >
-            Registrate
-          </Link>
-        </p>
       </div>
 
       {/* Footer */}

@@ -89,8 +89,8 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-500">Resumen general de tu gimnasio</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Resumen general de tu gimnasio</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
@@ -129,26 +129,26 @@ export default async function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        <div className="xl:col-span-2 bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-gray-900">Ingresos mensuales</h2>
-          <p className="text-xs text-gray-500 mt-0.5 mb-4">Últimos 6 meses</p>
+        <div className="xl:col-span-2 bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 p-5 shadow-sm">
+          <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">Ingresos mensuales</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-4">Últimos 6 meses</p>
           <RevenueChart data={revenueChartData} />
         </div>
 
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-gray-900">Próximos vencimientos</h2>
-          <p className="text-xs text-gray-500 mt-0.5 mb-4">Membresías que vencen en 7 días</p>
+        <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 p-5 shadow-sm">
+          <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">Próximos vencimientos</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-4">Membresías que vencen en 7 días</p>
           <div className="flex flex-col items-center justify-center h-32 gap-2">
             <CalendarClock className="w-10 h-10 text-amber-400" />
-            <p className="text-3xl font-bold text-gray-900">{expiringSoon ?? 0}</p>
-            <p className="text-sm text-gray-500">membresías por vencer</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{expiringSoon ?? 0}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">membresías por vencer</p>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
-        <h2 className="text-base font-semibold text-gray-900">Últimos accesos</h2>
-        <p className="text-xs text-gray-500 mt-0.5 mb-4">Últimas 10 entradas registradas</p>
+      <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 p-5 shadow-sm">
+        <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">Últimos accesos</h2>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-4">Últimas 10 entradas registradas</p>
         <RecentAccess logs={recentAccess} />
       </div>
     </div>

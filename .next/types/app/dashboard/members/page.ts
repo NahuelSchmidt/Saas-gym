@@ -1,4 +1,4 @@
-// File: /Users/nahuelschmidt/Documents/Saas Gym/src/app/dashboard/members/page.tsx
+// File: C:\Users\Nahue\Documents\Saas gym\Saas-gym\src\app\dashboard\members\page.tsx
 import * as entry from '../../../../../src/app/dashboard/members/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

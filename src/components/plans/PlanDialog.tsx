@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect } from "react";
 import { useFormState as useActionState } from "react-dom";
@@ -287,7 +287,7 @@ export function PlanDialog({ plan, trigger }: PlanDialogProps) {
                 >
                   <span
                     className={[
-                      "pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-lg transition-transform",
+                      "pointer-events-none inline-block h-4 w-4 rounded-full bg-white dark:bg-[hsl(220,10%,20%)] shadow-lg transition-transform",
                       field.value ? "translate-x-4" : "translate-x-0",
                     ].join(" ")}
                   />

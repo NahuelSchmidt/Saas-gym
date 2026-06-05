@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Download } from "lucide-react";
 
@@ -38,7 +38,7 @@ export default function ReportsExportButton({ tab, from, to, data }: ReportsExpo
     <button
       onClick={exportCSV}
       disabled={data.length === 0}
-      className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white dark:bg-[hsl(220,10%,20%)] hover:bg-gray-50 dark:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
     >
       <Download className="w-4 h-4" />
       Exportar CSV

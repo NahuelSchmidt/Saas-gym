@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { RefreshCw, Users, CheckCircle2, XCircle, Clock } from "lucide-react";
+import { RefreshCw, Users, CheckCircle2, XCircle, Clock, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -24,6 +24,7 @@ export interface TodayLogEntry {
   exit_time: string | null;
   access_granted: boolean;
   denial_reason: string | null;
+  branch_name: string | null;
 }
 
 interface TodayLogProps {
@@ -48,18 +49,10 @@ function EntryStatusBadge({ log }: { log: TodayLogEntry }) {
       </Badge>
     );
   }
-  if (!log.exit_time) {
-    return (
-      <Badge variant="warning" className="gap-1 whitespace-nowrap">
-        <Clock className="w-3 h-3" />
-        En gimnasio
-      </Badge>
-    );
-  }
   return (
     <Badge variant="success" className="gap-1 whitespace-nowrap">
       <CheckCircle2 className="w-3 h-3" />
-      Salida registrada
+      Permitido
     </Badge>
   );
 }
@@ -71,18 +64,17 @@ export function TodayLog({ logs }: TodayLogProps) {
 
   const granted = logs.filter((l) => l.access_granted).length;
   const denied = logs.filter((l) => !l.access_granted).length;
-  const inside = logs.filter((l) => l.access_granted && !l.exit_time).length;
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+    <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 dark:border-white/10">
         <div className="flex items-start gap-3">
           <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-50 shrink-0">
             <Users className="w-5 h-5 text-blue-600" />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-gray-900">Ingresos de hoy</h3>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">Ingresos de hoy</h3>
             <p className="text-sm text-gray-500 mt-0.5">
               {formatDate(new Date().toISOString())}
             </p>
@@ -92,8 +84,8 @@ export function TodayLog({ logs }: TodayLogProps) {
           onClick={() => router.refresh()}
           className={cn(
             "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium",
-            "text-gray-600 bg-gray-50 border border-gray-200",
-            "hover:bg-gray-100 hover:text-gray-900 active:scale-95 transition-all"
+            "text-gray-600 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 dark:border-white/10",
+            "hover:bg-gray-100 dark:bg-white/10 hover:text-gray-900 dark:text-gray-100 active:scale-95 transition-all"
           )}
         >
           <RefreshCw className="w-4 h-4" />
@@ -102,22 +94,18 @@ export function TodayLog({ logs }: TodayLogProps) {
       </div>
 
       {/* Stats strip */}
-      <div className="flex divide-x divide-gray-100 border-b border-gray-100 bg-gray-50/60">
+      <div className="flex divide-x divide-gray-100 dark:divide-white/10 border-b border-gray-100 dark:border-white/10 bg-gray-50/60 dark:bg-white/5">
         <div className="flex-1 px-6 py-3 text-center">
-          <p className="text-2xl font-bold text-gray-900">{logs.length}</p>
-          <p className="text-xs text-gray-500 mt-0.5">Total registros</p>
+          <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{logs.length}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Total registros</p>
         </div>
         <div className="flex-1 px-6 py-3 text-center">
-          <p className="text-2xl font-bold text-emerald-600">{granted}</p>
-          <p className="text-xs text-gray-500 mt-0.5">Accesos permitidos</p>
-        </div>
-        <div className="flex-1 px-6 py-3 text-center">
-          <p className="text-2xl font-bold text-amber-500">{inside}</p>
-          <p className="text-xs text-gray-500 mt-0.5">En el gimnasio</p>
+          <p className="text-2xl font-bold text-emerald-500">{granted}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Accesos permitidos</p>
         </div>
         <div className="flex-1 px-6 py-3 text-center">
           <p className="text-2xl font-bold text-red-500">{denied}</p>
-          <p className="text-xs text-gray-500 mt-0.5">Denegados</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Denegados</p>
         </div>
       </div>
 
@@ -131,10 +119,10 @@ export function TodayLog({ logs }: TodayLogProps) {
       ) : (
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-50/40">
+            <TableRow className="bg-gray-50/40 dark:bg-white/5">
               <TableHead className="pl-6">Miembro</TableHead>
               <TableHead>Hora entrada</TableHead>
-              <TableHead>Hora salida</TableHead>
+              <TableHead>Sucursal</TableHead>
               <TableHead className="pr-6">Estado</TableHead>
             </TableRow>
           </TableHeader>
@@ -155,7 +143,7 @@ export function TodayLog({ logs }: TodayLogProps) {
                       {getInitials(log.member_name)}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                         {log.member_name}
                       </p>
                       {log.denial_reason && (
@@ -169,23 +157,21 @@ export function TodayLog({ logs }: TodayLogProps) {
 
                 {/* Entry time */}
                 <TableCell>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-medium">
+                  <span className="inline-flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300 font-medium">
                     <Clock className="w-3.5 h-3.5 text-gray-400" />
                     {formatTime(log.entry_time)}
                   </span>
                 </TableCell>
 
-                {/* Exit time */}
+                {/* Branch */}
                 <TableCell>
-                  {log.exit_time ? (
-                    <span className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-gray-400" />
-                      {formatTime(log.exit_time)}
+                  {log.branch_name ? (
+                    <span className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                      <MapPin className="w-3 h-3" />
+                      {log.branch_name}
                     </span>
-                  ) : log.access_granted ? (
-                    <span className="text-sm text-amber-500 font-medium">—</span>
                   ) : (
-                    <span className="text-sm text-gray-300">—</span>
+                    <span className="text-sm text-gray-300 dark:text-gray-600">—</span>
                   )}
                 </TableCell>
 

@@ -1,166 +1,216 @@
 {
   "node": {
-    "08c515d4f245ab9f03918c706fe011ddf1e40bc8": {
+    "0f41dfb95125a98cac86bbcb160bafc7e23838bf": {
       "workers": {
-        "app/auth/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fauth%2Factions.ts%22%2C%5B%22registerAction%22%2C%22loginAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/auth/register/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fauth%2Factions.ts%22%2C%5B%22registerAction%22%2C%22loginAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/auth/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%22logoutAction%22%2C%22registerAction%22%2C%22loginAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/auth/login/page": "action-browser",
-        "app/auth/register/page": "action-browser"
+        "app/auth/login/page": "action-browser"
       }
     },
-    "7015ac5e062d6f12b3e0d695bcd1f581e4329fb0": {
+    "1a970d066de1081e5ddf4f34a4099dc1f7637f32": {
       "workers": {
-        "app/auth/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fauth%2Factions.ts%22%2C%5B%22registerAction%22%2C%22loginAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/auth/register/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fauth%2Factions.ts%22%2C%5B%22registerAction%22%2C%22loginAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/auth/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%22logoutAction%22%2C%22registerAction%22%2C%22loginAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/auth/login/page": "action-browser",
-        "app/auth/register/page": "action-browser"
+        "app/auth/login/page": "action-browser"
       }
     },
-    "d0aab0a2c8171479895116d919839b4f2f51b33b": {
+    "e6383ff348a9d65acbdd847b34e1e7c7f52827e0": {
       "workers": {
-        "app/auth/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fauth%2Factions.ts%22%2C%5B%22registerAction%22%2C%22loginAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/auth/register/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fauth%2Factions.ts%22%2C%5B%22registerAction%22%2C%22loginAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/auth/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%22logoutAction%22%2C%22registerAction%22%2C%22loginAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/auth/login/page": "action-browser",
-        "app/auth/register/page": "action-browser"
+        "app/auth/login/page": "action-browser"
       }
     },
-    "0c002fcdf5ef519b7e974cf38bd29dc908345ffb": {
+    "10f80f36a7389901ec5429b85a32a77d8b933b22": {
       "workers": {
-        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/plans/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser"
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/plans/page": "action-browser"
       }
     },
-    "43757c775dde654a2ed3a96b1cafe46e1b920d53": {
+    "28a358a747d4279c90e5d60c01ccd9f7cd74bfa5": {
       "workers": {
-        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/plans/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser"
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/plans/page": "action-browser"
       }
     },
-    "7003cd9eaa60b6faf0aa0c2edc4bff2fa0706fb1": {
+    "a46036ba92dee684df2f831ca90674725ba5a2f2": {
       "workers": {
-        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/plans/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser"
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/plans/page": "action-browser"
       }
     },
-    "738be7ccb0fff2e2782f99dc6705c4bac6f3a181": {
+    "c1927085e744e89611ebf1e5ccfbdb7ca433083f": {
       "workers": {
-        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/plans/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/plans/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser"
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/plans/page": "action-browser"
       }
     },
-    "26ca17c41b3e8f0495416ee8ac09f412929eed1d": {
+    "124031f3c0d71c9010b4aa56e31410c5b83bb70f": {
       "workers": {
-        "app/dashboard/access/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Faccess%2Factions.ts%22%2C%5B%22searchMembersAction%22%2C%22checkAccessAction%22%2C%22registerExitAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/payments/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/payments/page": "action-browser"
+      }
+    },
+    "2b62706efd3cec61c382a723efa1735663d44de1": {
+      "workers": {
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/payments/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/payments/page": "action-browser"
+      }
+    },
+    "5fbd7e303b1c1cbcc8c1bcac75477983e14423c6": {
+      "workers": {
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/payments/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/payments/page": "action-browser"
+      }
+    },
+    "089add893990a2452e603cb76cb3302e0d71f67f": {
+      "workers": {
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/members/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/members/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/members/new/page": "action-browser",
+        "app/dashboard/members/[id]/edit/page": "action-browser"
+      }
+    },
+    "d15ce741e1cc4de85fbf80ad0399e21344270e45": {
+      "workers": {
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/members/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/members/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/members/new/page": "action-browser",
+        "app/dashboard/members/[id]/edit/page": "action-browser"
+      }
+    },
+    "e8a7cdd31f41727089915c2bdb088433e5bb4cb5": {
+      "workers": {
+        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cplans%5C%5Cactions.ts%22%2C%5B%22createPlanAction%22%2C%22updatePlanAction%22%2C%22assignMembershipAction%22%2C%22deletePlanAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cpayments%5C%5Cactions.ts%22%2C%5B%22updatePaymentStatusAction%22%2C%22createPaymentAction%22%2C%22generateReceiptAction%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/members/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/members/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Ccomponents%5C%5Cmembers%5C%5CMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/members/[id]/page": "action-browser",
+        "app/dashboard/members/new/page": "action-browser",
+        "app/dashboard/members/[id]/edit/page": "action-browser"
+      }
+    },
+    "31e3f3f1f1f36cb55c36349dafbc4fc479defc42": {
+      "workers": {
+        "app/dashboard/access/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Caccess%5C%5Cactions.ts%22%2C%5B%22searchMembersAction%22%2C%22denyUnknownAction%22%2C%22checkAccessAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
         "app/dashboard/access/page": "action-browser"
       }
     },
-    "30b208dc9c07209168bc7f8e818ca7e0c09a3924": {
+    "457e9fb976fcefee32408a13cfcbbcf2e383adbb": {
       "workers": {
-        "app/dashboard/access/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Faccess%2Factions.ts%22%2C%5B%22searchMembersAction%22%2C%22checkAccessAction%22%2C%22registerExitAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/access/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Caccess%5C%5Cactions.ts%22%2C%5B%22searchMembersAction%22%2C%22denyUnknownAction%22%2C%22checkAccessAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
         "app/dashboard/access/page": "action-browser"
       }
     },
-    "3978cce12b2da3d14b17c8cf43c4fd98204fee3c": {
+    "7370d9c675d3e421adc5e97e0f72b67cce182317": {
       "workers": {
-        "app/dashboard/access/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Faccess%2Factions.ts%22%2C%5B%22searchMembersAction%22%2C%22checkAccessAction%22%2C%22registerExitAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/access/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Caccess%5C%5Cactions.ts%22%2C%5B%22searchMembersAction%22%2C%22denyUnknownAction%22%2C%22checkAccessAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
         "app/dashboard/access/page": "action-browser"
       }
     },
-    "2e059b3a91a23a37a5365f571ab08fc38d65d90a": {
+    "03b8dc0d6719b80195698d57104155da2352a219": {
       "workers": {
-        "app/dashboard/members/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/products/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cproducts%5C%5Cactions.ts%22%2C%5B%22createProductAction%22%2C%22deleteProductAction%22%2C%22createCategoryAction%22%2C%22adjustStockAction%22%2C%22createSaleAction%22%2C%22deleteCategoryAction%22%2C%22updateProductAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/members/new/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser",
-        "app/dashboard/members/[id]/edit/page": "action-browser"
+        "app/dashboard/products/page": "action-browser"
       }
     },
-    "3055073cb451d5a144aaf66fa36792ee65494eb1": {
+    "09283b05748a0ccf28df8f4291e5e57167f0ccba": {
       "workers": {
-        "app/dashboard/members/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/products/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cproducts%5C%5Cactions.ts%22%2C%5B%22createProductAction%22%2C%22deleteProductAction%22%2C%22createCategoryAction%22%2C%22adjustStockAction%22%2C%22createSaleAction%22%2C%22deleteCategoryAction%22%2C%22updateProductAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/members/new/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser",
-        "app/dashboard/members/[id]/edit/page": "action-browser"
+        "app/dashboard/products/page": "action-browser"
       }
     },
-    "897353973d8c988cfd0efc1fca67a793485ef96a": {
+    "3022d50b14b29c3f73495ed90ac1c5039813c6f5": {
       "workers": {
-        "app/dashboard/members/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/products/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cproducts%5C%5Cactions.ts%22%2C%5B%22createProductAction%22%2C%22deleteProductAction%22%2C%22createCategoryAction%22%2C%22adjustStockAction%22%2C%22createSaleAction%22%2C%22deleteCategoryAction%22%2C%22updateProductAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/members/new/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser",
-        "app/dashboard/members/[id]/edit/page": "action-browser"
+        "app/dashboard/products/page": "action-browser"
       }
     },
-    "341ba6bfb998cfef28cdcf0aa7c233ca8c2e4343": {
+    "4f710daeea63ca4f00807217e60c07def5e41b71": {
       "workers": {
-        "app/dashboard/payments/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/products/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cproducts%5C%5Cactions.ts%22%2C%5B%22createProductAction%22%2C%22deleteProductAction%22%2C%22createCategoryAction%22%2C%22adjustStockAction%22%2C%22createSaleAction%22%2C%22deleteCategoryAction%22%2C%22updateProductAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/payments/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser"
+        "app/dashboard/products/page": "action-browser"
       }
     },
-    "75741c6a4b230a8ac4bc8db8860dd177326adf44": {
+    "61ca393e24a217e59ad0863b3b3eaf9864a282f6": {
       "workers": {
-        "app/dashboard/payments/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/products/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cproducts%5C%5Cactions.ts%22%2C%5B%22createProductAction%22%2C%22deleteProductAction%22%2C%22createCategoryAction%22%2C%22adjustStockAction%22%2C%22createSaleAction%22%2C%22deleteCategoryAction%22%2C%22updateProductAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/payments/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser"
+        "app/dashboard/products/page": "action-browser"
       }
     },
-    "e8973b638fafead6359c97d65ba0d44eb9461e0a": {
+    "bd839c175e7ec159083b4708e6448ec28035a68d": {
       "workers": {
-        "app/dashboard/payments/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/members/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fplans%2Factions.ts%22%2C%5B%22deletePlanAction%22%2C%22assignMembershipAction%22%2C%22updatePlanAction%22%2C%22createPlanAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fapp%2Fdashboard%2Fpayments%2Factions.ts%22%2C%5B%22generateReceiptAction%22%2C%22createPaymentAction%22%2C%22updatePaymentStatusAction%22%5D%5D%2C%5B%22%2FUsers%2Fnahuelschmidt%2FDocuments%2FSaas%20Gym%2Fsrc%2Fcomponents%2Fmembers%2FMemberActions.ts%22%2C%5B%22deleteMemberAction%22%2C%22updateMemberAction%22%2C%22createMemberAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/dashboard/products/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cproducts%5C%5Cactions.ts%22%2C%5B%22createProductAction%22%2C%22deleteProductAction%22%2C%22createCategoryAction%22%2C%22adjustStockAction%22%2C%22createSaleAction%22%2C%22deleteCategoryAction%22%2C%22updateProductAction%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/dashboard/payments/page": "action-browser",
-        "app/dashboard/members/[id]/page": "action-browser"
+        "app/dashboard/products/page": "action-browser"
+      }
+    },
+    "c9b1b4720d5b24124528814ce80484a2feefd4a1": {
+      "workers": {
+        "app/dashboard/products/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CNahue%5C%5CDocuments%5C%5CSaas%20gym%5C%5CSaas-gym%5C%5Csrc%5C%5Capp%5C%5Cdashboard%5C%5Cproducts%5C%5Cactions.ts%22%2C%5B%22createProductAction%22%2C%22deleteProductAction%22%2C%22createCategoryAction%22%2C%22adjustStockAction%22%2C%22createSaleAction%22%2C%22deleteCategoryAction%22%2C%22updateProductAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/products/page": "action-browser"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "Zx8394TpMTlCllS39l5SwXoEin31Nf01e/xSuWQfoO8="
+  "encryptionKey": "vDJMmwzN79nAoSlXKIWZzL9CQftdKfKBHDUfQAoazQM="
 }

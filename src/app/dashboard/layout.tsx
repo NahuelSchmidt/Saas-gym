@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+﻿import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
@@ -36,7 +36,7 @@ export default async function DashboardLayout({
     "Usuario";
 
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
+    <div className="flex h-screen bg-gray-50 dark:bg-white/5 dark:bg-[hsl(220,10%,14%)] overflow-hidden">
       <Sidebar
         gymName={gymName}
         userEmail={user.email ?? ""}

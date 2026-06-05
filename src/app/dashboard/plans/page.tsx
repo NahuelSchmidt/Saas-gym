@@ -68,7 +68,7 @@ export default async function PlansPage() {
       {/* Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Planes</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Planes</h1>
           <p className="mt-1 text-sm text-gray-500">
             {activePlans.length} plan{activePlans.length !== 1 ? "es" : ""} activo
             {activePlans.length !== 1 ? "s" : ""}
@@ -79,7 +79,7 @@ export default async function PlansPage() {
 
       {/* Empty state */}
       {allPlans.length === 0 && (
-        <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 bg-white py-16 text-center">
+        <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 dark:border-white/10 bg-white dark:bg-[hsl(220,10%,20%)] py-16 text-center">
           <Tag className="mb-3 h-10 w-10 text-gray-300" />
           <h3 className="text-base font-semibold text-gray-700">No hay planes creados</h3>
           <p className="mt-1 text-sm text-gray-500">
@@ -130,7 +130,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
-            <h3 className="truncate text-lg font-semibold text-gray-900">{plan.name}</h3>
+            <h3 className="truncate text-lg font-semibold text-gray-900 dark:text-gray-100">{plan.name}</h3>
             {plan.description && (
               <p className="mt-0.5 line-clamp-2 text-sm text-gray-500">{plan.description}</p>
             )}
