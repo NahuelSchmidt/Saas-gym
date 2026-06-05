@@ -1,40 +1,43 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
-import Link from "next/link";
+import { useState } from "react";
 import { AlertCircle, Dumbbell, Eye, EyeOff, Loader2 } from "lucide-react";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { loginAction, type AuthState } from "../actions";
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
-    >
-      {pending ? (<><Loader2 className="h-4 w-4 animate-spin" />Iniciando sesión…</>) : "Iniciar sesión"}
-    </button>
-  );
-}
-
-const initialState: AuthState = {};
+import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
-  const [state, formAction] = useFormState(loginAction, initialState);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    if (state.redirect) {
-      router.push(state.redirect);
-      router.refresh();
-    }
-  }, [state.redirect, router]);
+  const supabase = createClient();
 
   const inputClass = "w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20";
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      setLoading(false);
+      if (error.message.toLowerCase().includes("invalid")) {
+        setError("Email o contraseña incorrectos.");
+      } else {
+        setError("Ocurrió un error al iniciar sesión. Intentá de nuevo.");
+      }
+      return;
+    }
+
+    router.push("/dashboard");
+    router.refresh();
+  }
 
   return (
     <div className="w-full max-w-md animate-[fade-in_0.3s_ease-out]">
@@ -49,23 +52,21 @@ export default function LoginPage() {
           <p className="text-sm text-slate-500">Iniciá sesión para continuar</p>
         </div>
 
-        {state.error && (
+        {error && (
           <div className="mb-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
-            <span>{state.error}</span>
+            <span>{error}</span>
           </div>
         )}
 
-        <form action={formAction} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
             <label htmlFor="email" className="block text-sm font-medium text-slate-700">Email</label>
             <input id="email" name="email" type="email" autoComplete="email" required placeholder="tu@email.com" className={inputClass} />
           </div>
 
           <div className="space-y-1.5">
-            <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium text-slate-700">Contraseña</label>
-            </div>
+            <label htmlFor="password" className="block text-sm font-medium text-slate-700">Contraseña</label>
             <div className="relative">
               <input
                 id="password" name="password"
@@ -81,7 +82,15 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className="pt-1"><SubmitButton /></div>
+          <div className="pt-1">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {loading ? (<><Loader2 className="h-4 w-4 animate-spin" />Iniciando sesión…</>) : "Iniciar sesión"}
+            </button>
+          </div>
         </form>
       </div>
 
