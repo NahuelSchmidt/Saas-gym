@@ -42,18 +42,6 @@ export async function middleware(request: NextRequest) {
     return redirectResponse;
   }
 
-  // Redirigir usuario logueado fuera de /auth
-  if (pathname.startsWith("/auth") && user) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
-    url.search = "";
-    const redirectResponse = NextResponse.redirect(url);
-    supabaseResponse.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
-    });
-    return redirectResponse;
-  }
-
   // Redirigir raíz
   if (pathname === "/") {
     const url = request.nextUrl.clone();
