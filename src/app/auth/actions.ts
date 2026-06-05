@@ -6,6 +6,7 @@ import { createClient, createAdminClient } from "@/lib/supabase/server";
 export type AuthState = {
   error?: string;
   success?: boolean;
+  redirect?: string;
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -37,7 +38,7 @@ export async function loginAction(
     return { error: "Ocurrió un error al iniciar sesión. Intentá de nuevo." };
   }
 
-  redirect("/dashboard");
+  return { success: true, redirect: "/dashboard" };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

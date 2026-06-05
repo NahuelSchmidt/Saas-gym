@@ -3,7 +3,8 @@
 import { useFormState, useFormStatus } from "react-dom";
 import Link from "next/link";
 import { AlertCircle, Dumbbell, Eye, EyeOff, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { loginAction, type AuthState } from "../actions";
 
 function SubmitButton() {
@@ -24,6 +25,14 @@ const initialState: AuthState = {};
 export default function LoginPage() {
   const [state, formAction] = useFormState(loginAction, initialState);
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.redirect) {
+      router.push(state.redirect);
+      router.refresh();
+    }
+  }, [state.redirect, router]);
 
   const inputClass = "w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20";
 
