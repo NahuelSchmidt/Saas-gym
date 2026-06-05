@@ -87,68 +87,41 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-6xl">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Resumen general de tu gimnasio</p>
+        <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Dashboard</h1>
+        <p className="mt-0.5 text-sm text-gray-400 dark:text-gray-500">Resumen general de tu gimnasio</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        <StatCard
-          title="Miembros Activos"
-          value={String(activeMembers ?? 0)}
-          subtitle="membresías vigentes"
-          icon={Users}
-          colorScheme="blue"
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+        <StatCard title="Miembros Activos" value={String(activeMembers ?? 0)} subtitle="membresías vigentes" icon={Users} colorScheme="blue" />
+        <StatCard title="Ingresos del Día" value={formatCurrency(todayRevenue)} subtitle="pagos de hoy" icon={DollarSign} colorScheme="green" />
+        <StatCard title="Ingresos del Mes" value={formatCurrency(monthRevenue)} subtitle="pagos este mes" icon={DollarSign} colorScheme="violet"
+          trend={revenueTrend !== null ? { value: Math.abs(revenueTrend), direction: revenueTrend >= 0 ? "up" : "down" } : undefined}
         />
-        <StatCard
-          title="Ingresos del Día"
-          value={formatCurrency(todayRevenue)}
-          subtitle="pagos de hoy"
-          icon={DollarSign}
-          colorScheme="green"
-        />
-        <StatCard
-          title="Ingresos del Mes"
-          value={formatCurrency(monthRevenue)}
-          subtitle="pagos este mes"
-          icon={DollarSign}
-          colorScheme="violet"
-          trend={revenueTrend !== null ? {
-            value: Math.abs(revenueTrend),
-            direction: revenueTrend >= 0 ? "up" : "down",
-          } : undefined}
-        />
-        <StatCard
-          title="Membresías Vencidas"
-          value={String(expiredCount ?? 0)}
-          subtitle={`${expiringSoon ?? 0} vencen en 7 días`}
-          icon={UserX}
-          colorScheme="red"
-        />
+        <StatCard title="Membresías Vencidas" value={String(expiredCount ?? 0)} subtitle={`${expiringSoon ?? 0} vencen en 7 días`} icon={UserX} colorScheme="red" />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        <div className="xl:col-span-2 bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">Ingresos mensuales</h2>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-4">Últimos 6 meses</p>
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+        <div className="xl:col-span-2 bg-white dark:bg-[hsl(220,10%,20%)] rounded-xl border border-gray-100 dark:border-white/10 p-6">
+          <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">Ingresos mensuales</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 mb-5">Últimos 6 meses</p>
           <RevenueChart data={revenueChartData} />
         </div>
-
-        <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">Próximos vencimientos</h2>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-4">Membresías que vencen en 7 días</p>
+        <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-xl border border-gray-100 dark:border-white/10 p-6">
+          <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">Próximos vencimientos</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 mb-5">Vencen en 7 días</p>
           <div className="flex flex-col items-center justify-center h-32 gap-2">
-            <CalendarClock className="w-10 h-10 text-amber-400" />
-            <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{expiringSoon ?? 0}</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">membresías por vencer</p>
+            <CalendarClock className="w-8 h-8 text-amber-400" />
+            <p className="text-4xl font-bold text-gray-900 dark:text-gray-100">{expiringSoon ?? 0}</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500">membresías por vencer</p>
           </div>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-2xl border border-gray-200 dark:border-white/10 p-5 shadow-sm">
-        <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">Últimos accesos</h2>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-4">Últimas 10 entradas registradas</p>
+      <div className="bg-white dark:bg-[hsl(220,10%,20%)] rounded-xl border border-gray-100 dark:border-white/10 p-6">
+        <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">Últimos accesos</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 mb-5">Últimas 10 entradas registradas</p>
         <RecentAccess logs={recentAccess} />
       </div>
     </div>

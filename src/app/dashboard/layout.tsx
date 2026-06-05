@@ -36,7 +36,7 @@ export default async function DashboardLayout({
     "Usuario";
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-white/5 dark:bg-[hsl(220,10%,14%)] overflow-hidden">
+    <div className="flex h-screen bg-[#fafafa] dark:bg-[hsl(220,10%,14%)] overflow-hidden">
       <Sidebar
         gymName={gymName}
         userEmail={user.email ?? ""}
@@ -50,7 +50,7 @@ export default async function DashboardLayout({
           userName={userName}
           avatarUrl={profile.avatar_url ?? null}
         />
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-6 md:p-8">
           {children}
         </main>
       </div>
