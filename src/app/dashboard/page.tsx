@@ -87,13 +87,13 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="space-y-8 max-w-6xl">
+    <div className="space-y-8">
       <div>
         <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Dashboard</h1>
         <p className="mt-0.5 text-sm text-gray-400 dark:text-gray-500">Resumen general de tu gimnasio</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
         <StatCard title="Miembros Activos" value={String(activeMembers ?? 0)} subtitle="membresías vigentes" icon={Users} colorScheme="blue" />
         <StatCard title="Ingresos del Día" value={formatCurrency(todayRevenue)} subtitle="pagos de hoy" icon={DollarSign} colorScheme="green" />
         <StatCard title="Ingresos del Mes" value={formatCurrency(monthRevenue)} subtitle="pagos este mes" icon={DollarSign} colorScheme="violet"
