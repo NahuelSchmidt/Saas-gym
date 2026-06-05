@@ -15,6 +15,7 @@ export function useTheme() {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("theme") as Theme | null;
@@ -22,7 +23,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const initial = stored ?? preferred;
     setTheme(initial);
     document.documentElement.classList.toggle("dark", initial === "dark");
+    setMounted(true);
   }, []);
+
+  if (!mounted) return <>{children}</>;
 
   function toggle() {
     setTheme((prev) => {
