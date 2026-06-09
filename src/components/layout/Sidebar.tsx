@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, Users, CreditCard, DollarSign, QrCode,
-  BarChart3, Settings, LogOut, Dumbbell, X, Menu, Sun, Moon, Package,
+  BarChart3, Settings, LogOut, Dumbbell, X, Menu, Sun, Moon, Package, Bell,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getInitials } from "@/lib/utils";
@@ -14,6 +14,7 @@ import { useTheme } from "@/components/ThemeProvider";
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Miembros", href: "/dashboard/members", icon: Users },
+  { label: "Vencimientos", href: "/dashboard/members/expiring", icon: Bell },
   { label: "Planes", href: "/dashboard/plans", icon: CreditCard },
   { label: "Pagos", href: "/dashboard/payments", icon: DollarSign },
   { label: "Productos", href: "/dashboard/products", icon: Package },

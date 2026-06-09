@@ -24,6 +24,7 @@ interface Plan {
 interface Props {
   memberId: string;
   plans: Plan[];
+  currentEndDate?: string | null; // fecha de vencimiento de la membresía actual
 }
 
 const PAYMENT_METHODS = [
@@ -32,12 +33,19 @@ const PAYMENT_METHODS = [
   { value: "TARJETA", label: "Tarjeta" },
 ];
 
-export function AssignPlanDialog({ memberId, plans }: Props) {
+export function AssignPlanDialog({ memberId, plans, currentEndDate }: Props) {
   const [open, setOpen] = useState(false);
   const [planId, setPlanId] = useState("");
-  const [startDate, setStartDate] = useState(
-    new Date().toISOString().split("T")[0]
-  );
+  // Si hay membresía activa, sugerir arrancar al día siguiente del vencimiento
+  const suggestedStart = currentEndDate
+    ? (() => {
+        const d = new Date(currentEndDate);
+        d.setDate(d.getDate() + 1);
+        return d.toISOString().split("T")[0];
+      })()
+    : new Date().toISOString().split("T")[0];
+
+  const [startDate, setStartDate] = useState(suggestedStart);
   const [paymentMethod, setPaymentMethod] = useState("EFECTIVO");
   const [amount, setAmount] = useState("");
   const [registerPayment, setRegisterPayment] = useState(true);
@@ -119,12 +127,12 @@ export function AssignPlanDialog({ memberId, plans }: Props) {
       <DialogTrigger asChild>
         <Button size="sm" variant="outline">
           <CreditCard className="mr-2 h-4 w-4" />
-          Asignar plan
+          {currentEndDate ? "Renovar membresía" : "Asignar plan"}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Asignar plan de membresía</DialogTitle>
+          <DialogTitle>{currentEndDate ? "Renovar membresía" : "Asignar plan de membresía"}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-2">
           {/* Plan */}

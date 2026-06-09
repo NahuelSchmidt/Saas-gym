@@ -146,6 +146,7 @@ export default async function MemberDetailPage({ params }: PageProps) {
           <AssignPlanDialog
             memberId={member.id}
             plans={availablePlans ?? []}
+            currentEndDate={activeMembership?.end_date ?? null}
           />
           <QRModal
             memberName={fullName}
