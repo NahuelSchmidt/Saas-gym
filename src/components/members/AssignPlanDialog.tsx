@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { CreditCard } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+import { DateInput } from "@/components/ui/date-input";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -157,13 +158,10 @@ export function AssignPlanDialog({ memberId, plans, currentEndDate }: Props) {
           {/* Start date */}
           <div className="space-y-1.5">
             <label className="text-sm font-medium">Fecha de inicio</label>
-            <input
-              type="date"
-              lang="es-AR"
+            <DateInput
               value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={(val) => setStartDate(val)}
               required
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
 

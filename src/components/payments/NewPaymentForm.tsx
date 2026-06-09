@@ -12,6 +12,7 @@ import { Loader2, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { DateInput } from "@/components/ui/date-input";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -291,11 +292,12 @@ export function NewPaymentForm({ members, plans, memberships }: NewPaymentFormPr
               <Label htmlFor="pay-date">
                 Fecha de pago <span className="text-destructive">*</span>
               </Label>
-              <Input
+              <DateInput
                 id="pay-date"
-                type="date"
-                lang="es-AR"
-                {...register("payment_date")}
+                name="payment_date"
+                value={watch("payment_date") ?? ""}
+                onChange={(val) => setValue("payment_date", val)}
+                required
               />
               {errors.payment_date && (
                 <p className="text-xs text-destructive">{errors.payment_date.message}</p>
@@ -328,20 +330,20 @@ export function NewPaymentForm({ members, plans, memberships }: NewPaymentFormPr
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <Label htmlFor="pay-period-start">Período desde</Label>
-              <Input
+              <DateInput
                 id="pay-period-start"
-                type="date"
-                lang="es-AR"
-                {...register("period_start")}
+                name="period_start"
+                value={watch("period_start") ?? ""}
+                onChange={(val) => setValue("period_start", val)}
               />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="pay-period-end">Período hasta</Label>
-              <Input
+              <DateInput
                 id="pay-period-end"
-                type="date"
-                lang="es-AR"
-                {...register("period_end")}
+                name="period_end"
+                value={watch("period_end") ?? ""}
+                onChange={(val) => setValue("period_end", val)}
               />
             </div>
           </div>

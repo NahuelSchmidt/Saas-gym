@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { DateInput } from "@/components/ui/date-input";
 import { X } from "lucide-react";
 import type { PaymentStatus, PaymentMethod } from "@/types/database";
 
@@ -88,19 +89,15 @@ export function PaymentFilters({
 
       {/* Date range */}
       <div className="flex items-center gap-2">
-        <Input
-          type="date"
-          lang="es-AR"
+        <DateInput
           value={currentFrom}
-          onChange={(e) => push({ from: e.target.value, page: undefined })}
+          onChange={(val) => push({ from: val, page: undefined })}
           className="w-[145px]"
         />
         <span className="text-sm text-muted-foreground">—</span>
-        <Input
-          type="date"
-          lang="es-AR"
+        <DateInput
           value={currentTo}
-          onChange={(e) => push({ to: e.target.value, page: undefined })}
+          onChange={(val) => push({ to: val, page: undefined })}
           className="w-[145px]"
         />
       </div>

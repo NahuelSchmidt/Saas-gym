@@ -11,6 +11,7 @@ import { Loader2, Upload, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { DateInput } from "@/components/ui/date-input";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -94,6 +95,7 @@ export function MemberForm({ member }: MemberFormProps) {
     register,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<MemberFormValues>({
     resolver: zodResolver(memberSchema),
     defaultValues: {
@@ -234,7 +236,12 @@ export function MemberForm({ member }: MemberFormProps) {
           {/* Fecha de nacimiento */}
           <div className="space-y-1.5">
             <Label htmlFor="birth_date">Fecha de nacimiento</Label>
-            <Input id="birth_date" type="date" lang="es-AR" {...register("birth_date")} />
+            <DateInput
+              id="birth_date"
+              name="birth_date"
+              value={watch("birth_date") ?? ""}
+              onChange={(val) => setValue("birth_date", val)}
+            />
           </div>
 
           {/* Email */}

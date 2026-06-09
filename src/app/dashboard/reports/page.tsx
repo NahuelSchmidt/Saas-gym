@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table";
 import ReportsExportButton from "./ReportsExportButton";
 import ActivityCharts from "./ActivityCharts";
+import { ReportsDateFilter } from "./ReportsDateFilter";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Reportes" };
@@ -102,35 +103,7 @@ export default async function ReportsPage({
       </div>
 
       {/* Date range filter */}
-      <form className="flex items-center gap-3 flex-wrap">
-        <input type="hidden" name="tab" value={tab} />
-        <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600 dark:text-gray-400">Desde</label>
-          <input
-            type="date"
-            lang="es-AR"
-            name="from"
-            defaultValue={fromDate}
-            className="border border-gray-300 dark:border-white/10 rounded-md px-3 py-1.5 text-sm bg-white dark:bg-[hsl(220,10%,22%)] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600 dark:text-gray-400">Hasta</label>
-          <input
-            type="date"
-            lang="es-AR"
-            name="to"
-            defaultValue={toDate}
-            className="border border-gray-300 dark:border-white/10 rounded-md px-3 py-1.5 text-sm bg-white dark:bg-[hsl(220,10%,22%)] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <button
-          type="submit"
-          className="px-4 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
-        >
-          Filtrar
-        </button>
-      </form>
+      <ReportsDateFilter tab={tab} fromDate={fromDate} toDate={toDate} />
 
       {/* Summary card for cobros */}
       {tab === "cobros" && (
