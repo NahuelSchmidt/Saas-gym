@@ -195,8 +195,18 @@ export async function assignMembershipAction(
     end.setDate(end.getDate() + plan.duration_days - 1);
 
     const endDate = end.toISOString().split("T")[0];
-    const today = new Date().toISOString().split("T")[0];
+    // Argentina UTC-3
+    const nowArg = new Date(Date.now() - 3 * 60 * 60 * 1000);
+    const today = nowArg.toISOString().split("T")[0];
     const status = endDate < today ? "VENCIDO" : "ACTIVO";
+
+    // Cerrar cualquier membresía ACTIVO anterior para evitar duplicados
+    await supabase
+      .from("memberships")
+      .update({ status: "CANCELADO" })
+      .eq("member_id", memberId)
+      .eq("gym_id", gymId)
+      .eq("status", "ACTIVO");
 
     const payload: MembershipInsert = {
       gym_id: gymId,
