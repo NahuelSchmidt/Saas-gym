@@ -81,11 +81,14 @@ export default async function MembersPage({ searchParams }: PageProps) {
   const { data: members, count, error } = await dbQuery;
 
   // Conteos globales (sin filtros)
-  const [{ count: totalMembers }, { count: activeMembers }] = await Promise.all([
+  // Para activos: traemos member_id únicos con membresía ACTIVO
+  const [{ count: totalMembers }, activeMembershipsData] = await Promise.all([
     supabase.from("members").select("*", { count: "exact", head: true }).is("deleted_at", null),
-    supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true })
-      .eq("status", "ACTIVO").is("members.deleted_at", null),
+    supabase.from("memberships").select("member_id")
+      .eq("status", "ACTIVO"),
   ]);
+  // Contar member_ids únicos para evitar duplicados
+  const activeMembers = new Set(activeMembershipsData.data?.map((m) => m.member_id) ?? []).size;
 
   const totalPages = Math.ceil((count ?? 0) / PAGE_SIZE);
 
