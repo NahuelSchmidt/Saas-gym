@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { CreditCard } from "lucide-react";
+import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -168,7 +169,7 @@ export function AssignPlanDialog({ memberId, plans, currentEndDate }: Props) {
           {selectedPlan && startDate && (
             <p className="text-sm text-muted-foreground">
               Vencimiento:{" "}
-              <span className="font-medium text-foreground">{getEndDate()}</span>
+              <span className="font-medium text-foreground">{formatDate(getEndDate())}</span>
             </p>
           )}
 

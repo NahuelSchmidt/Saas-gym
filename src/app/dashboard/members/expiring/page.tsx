@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { Bell, ChevronLeft, Phone, MessageCircle } from "lucide-react";
 import { ExpiringWhatsAppButton } from "./ExpiringWhatsAppButton";
+import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -164,10 +165,7 @@ export default async function ExpiringMembersPage({ searchParams }: PageProps) {
 
                   {/* Fecha */}
                   <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:block shrink-0 w-24 text-right">
-                    {new Date(row.end_date + "T12:00:00").toLocaleDateString("es-AR", {
-                      day: "2-digit",
-                      month: "short",
-                    })}
+                    {formatDate(row.end_date)}
                   </span>
 
                   {/* Botón WhatsApp */}
