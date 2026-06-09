@@ -189,22 +189,18 @@ export default async function MembersPage({ searchParams }: PageProps) {
               </TableHeader>
               <TableBody>
                 {members.map((member) => {
-                  // Find the active (or most recent) membership
-                  const activeMembership = (
-                    member.memberships as Array<{
-                      id: string;
-                      status: string;
-                      start_date: string;
-                      end_date: string;
-                      plans: { id: string; name: string } | null;
-                    }>
-                  )
+                  type MS = { id: string; status: string; start_date: string; end_date: string; plans: { id: string; name: string } | null };
+                  const allMemberships = member.memberships as MS[];
+                  // Membresía activa
+                  const activeMembership = allMemberships
                     ?.filter((m) => m.status === "ACTIVO")
-                    .sort(
-                      (a, b) =>
-                        new Date(b.end_date).getTime() -
-                        new Date(a.end_date).getTime()
-                    )[0];
+                    .sort((a, b) => new Date(b.end_date).getTime() - new Date(a.end_date).getTime())[0];
+                  // Membresía vencida más reciente (si no tiene activa)
+                  const expiredMembership = !activeMembership
+                    ? allMemberships
+                        ?.filter((m) => m.status === "VENCIDO")
+                        .sort((a, b) => new Date(b.end_date).getTime() - new Date(a.end_date).getTime())[0]
+                    : null;
 
                   return (
                     <TableRow key={member.id}>
@@ -259,6 +255,15 @@ export default async function MembersPage({ searchParams }: PageProps) {
                             </p>
                             <p className="mt-0.5 text-xs text-muted-foreground">
                               Vence {formatDate(activeMembership.end_date)}
+                            </p>
+                          </div>
+                        ) : expiredMembership ? (
+                          <div className="text-sm">
+                            <p className="font-medium leading-none text-red-500">
+                              {expiredMembership.plans?.name ?? "—"}
+                            </p>
+                            <p className="mt-0.5 text-xs text-red-400">
+                              Venció {formatDate(expiredMembership.end_date)}
                             </p>
                           </div>
                         ) : (
