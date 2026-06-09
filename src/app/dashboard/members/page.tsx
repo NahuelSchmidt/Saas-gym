@@ -80,6 +80,13 @@ export default async function MembersPage({ searchParams }: PageProps) {
 
   const { data: members, count, error } = await dbQuery;
 
+  // Conteos globales (sin filtros)
+  const [{ count: totalMembers }, { count: activeMembers }] = await Promise.all([
+    supabase.from("members").select("*", { count: "exact", head: true }).is("deleted_at", null),
+    supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true })
+      .eq("status", "ACTIVO").is("members.deleted_at", null),
+  ]);
+
   const totalPages = Math.ceil((count ?? 0) / PAGE_SIZE);
 
   // Helper to build search param URLs preserving existing params
@@ -101,10 +108,15 @@ export default async function MembersPage({ searchParams }: PageProps) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Miembros</h1>
-          <p className="text-sm text-muted-foreground">
-            {count ?? 0} miembro{(count ?? 0) !== 1 ? "s" : ""} registrado
-            {(count ?? 0) !== 1 ? "s" : ""}
-          </p>
+          <div className="flex items-center gap-3 mt-1">
+            <span className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">{totalMembers ?? 0}</span> registrados
+            </span>
+            <span className="text-muted-foreground/40">·</span>
+            <span className="text-sm text-muted-foreground">
+              <span className="font-semibold text-emerald-600 dark:text-emerald-400">{activeMembers ?? 0}</span> con membresía activa
+            </span>
+          </div>
         </div>
         <Button asChild>
           <Link href="/dashboard/members/new">
