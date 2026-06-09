@@ -21,12 +21,21 @@ export default async function DashboardPage() {
   if (!user) redirect("/auth/login");
 
   const now = new Date();
-  const todayStart = new Date(now); todayStart.setHours(0, 0, 0, 0);
-  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-  const prevMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-  const prevMonthEnd = new Date(monthStart.getTime() - 1);
-  const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 5, 1);
-  const in7Days = new Date(now); in7Days.setDate(in7Days.getDate() + 7);
+  // Argentina es UTC-3: ajustamos para calcular fechas correctamente en horario local
+  const ARG_OFFSET_MS = -3 * 60 * 60 * 1000;
+  const nowArg = new Date(now.getTime() + ARG_OFFSET_MS);
+  const todayStr = nowArg.toISOString().split("T")[0]; // "YYYY-MM-DD" en hora Argentina
+  const monthStr = `${nowArg.getUTCFullYear()}-${String(nowArg.getUTCMonth() + 1).padStart(2, "0")}-01`;
+  const prevMonthDate = new Date(Date.UTC(nowArg.getUTCFullYear(), nowArg.getUTCMonth() - 1, 1));
+  const prevMonthStr = prevMonthDate.toISOString().split("T")[0];
+  const prevMonthEndDate = new Date(Date.UTC(nowArg.getUTCFullYear(), nowArg.getUTCMonth(), 0));
+  const prevMonthEndStr = prevMonthEndDate.toISOString().split("T")[0];
+  const sixMonthsAgoDate = new Date(Date.UTC(nowArg.getUTCFullYear(), nowArg.getUTCMonth() - 5, 1));
+  const sixMonthsAgoStr = sixMonthsAgoDate.toISOString().split("T")[0];
+  const in7DaysDate = new Date(nowArg.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const in7DaysStr = in7DaysDate.toISOString().split("T")[0];
+  const nowStr = todayStr; // para comparaciones de "hoy"
+
 
   const [
     { count: activeMembers },
@@ -39,12 +48,12 @@ export default async function DashboardPage() {
     { data: recentRaw },
   ] = await Promise.all([
     supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true }).eq("status", "ACTIVO").is("members.deleted_at", null),
-    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", todayStart.toISOString()),
-    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", monthStart.toISOString()),
-    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", prevMonthStart.toISOString()).lte("payment_date", prevMonthEnd.toISOString()),
+    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", todayStr),
+    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", monthStr),
+    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", prevMonthStr).lte("payment_date", prevMonthEndStr),
     supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true }).eq("status", "VENCIDO").is("members.deleted_at", null),
-    supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true }).eq("status", "ACTIVO").lte("end_date", in7Days.toISOString()).gte("end_date", now.toISOString()).is("members.deleted_at", null),
-    supabase.from("payments").select("amount, payment_date").eq("status", "PAGADO").gte("payment_date", sixMonthsAgo.toISOString()).order("payment_date", { ascending: true }),
+    supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true }).eq("status", "ACTIVO").lte("end_date", in7DaysStr).gte("end_date", nowStr).is("members.deleted_at", null),
+    supabase.from("payments").select("amount, payment_date").eq("status", "PAGADO").gte("payment_date", sixMonthsAgoStr).order("payment_date", { ascending: true }),
     supabase.from("access_logs").select("id, entry_time, access_granted, denial_reason, member_id, members(first_name, last_name)").order("entry_time", { ascending: false }).limit(10),
   ]);
 
@@ -58,13 +67,13 @@ export default async function DashboardPage() {
   // Build 6-month revenue chart data
   const revenueByMonth = new Map<string, number>();
   for (let i = 5; i >= 0; i--) {
-    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-    revenueByMonth.set(`${d.getFullYear()}-${d.getMonth() + 1}`, 0);
+    const d = new Date(Date.UTC(nowArg.getUTCFullYear(), nowArg.getUTCMonth() - i, 1));
+    revenueByMonth.set(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`, 0);
   }
   revenueRaw?.forEach((p) => {
     if (!p.payment_date) return;
     const d = new Date(p.payment_date);
-    const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+    const key = `${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`;
     if (revenueByMonth.has(key)) {
       revenueByMonth.set(key, (revenueByMonth.get(key) ?? 0) + (p.amount ?? 0));
     }
