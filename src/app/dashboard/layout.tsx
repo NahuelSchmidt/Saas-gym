@@ -28,6 +28,14 @@ export default async function DashboardLayout({
     redirect("/auth/login");
   }
 
+  // Actualizar automáticamente membresías vencidas (end_date ya pasó pero siguen como ACTIVO)
+  const todayArg = new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString().split("T")[0];
+  await supabase
+    .from("memberships")
+    .update({ status: "VENCIDO" })
+    .eq("status", "ACTIVO")
+    .lt("end_date", todayArg);
+
   const gymData = profile.gyms as { id: string; name: string } | null;
   const gymName = gymData?.name ?? "GymFlow";
   const userName =
