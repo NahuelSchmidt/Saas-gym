@@ -294,6 +294,7 @@ export function NewPaymentForm({ members, plans, memberships }: NewPaymentFormPr
               <Input
                 id="pay-date"
                 type="date"
+                lang="es-AR"
                 {...register("payment_date")}
               />
               {errors.payment_date && (
@@ -330,6 +331,7 @@ export function NewPaymentForm({ members, plans, memberships }: NewPaymentFormPr
               <Input
                 id="pay-period-start"
                 type="date"
+                lang="es-AR"
                 {...register("period_start")}
               />
             </div>
@@ -338,6 +340,7 @@ export function NewPaymentForm({ members, plans, memberships }: NewPaymentFormPr
               <Input
                 id="pay-period-end"
                 type="date"
+                lang="es-AR"
                 {...register("period_end")}
               />
             </div>

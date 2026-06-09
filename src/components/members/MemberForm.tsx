@@ -234,7 +234,7 @@ export function MemberForm({ member }: MemberFormProps) {
           {/* Fecha de nacimiento */}
           <div className="space-y-1.5">
             <Label htmlFor="birth_date">Fecha de nacimiento</Label>
-            <Input id="birth_date" type="date" {...register("birth_date")} />
+            <Input id="birth_date" type="date" lang="es-AR" {...register("birth_date")} />
           </div>
 
           {/* Email */}

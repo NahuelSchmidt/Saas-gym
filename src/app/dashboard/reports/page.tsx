@@ -108,6 +108,7 @@ export default async function ReportsPage({
           <label className="text-sm text-gray-600 dark:text-gray-400">Desde</label>
           <input
             type="date"
+            lang="es-AR"
             name="from"
             defaultValue={fromDate}
             className="border border-gray-300 dark:border-white/10 rounded-md px-3 py-1.5 text-sm bg-white dark:bg-[hsl(220,10%,22%)] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -117,6 +118,7 @@ export default async function ReportsPage({
           <label className="text-sm text-gray-600 dark:text-gray-400">Hasta</label>
           <input
             type="date"
+            lang="es-AR"
             name="to"
             defaultValue={toDate}
             className="border border-gray-300 dark:border-white/10 rounded-md px-3 py-1.5 text-sm bg-white dark:bg-[hsl(220,10%,22%)] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"

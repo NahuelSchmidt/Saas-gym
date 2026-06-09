@@ -159,6 +159,7 @@ export function AssignPlanDialog({ memberId, plans, currentEndDate }: Props) {
             <label className="text-sm font-medium">Fecha de inicio</label>
             <input
               type="date"
+              lang="es-AR"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               required

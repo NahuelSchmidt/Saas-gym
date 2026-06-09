@@ -90,6 +90,7 @@ export function PaymentFilters({
       <div className="flex items-center gap-2">
         <Input
           type="date"
+          lang="es-AR"
           value={currentFrom}
           onChange={(e) => push({ from: e.target.value, page: undefined })}
           className="w-[145px]"
@@ -97,6 +98,7 @@ export function PaymentFilters({
         <span className="text-sm text-muted-foreground">—</span>
         <Input
           type="date"
+          lang="es-AR"
           value={currentTo}
           onChange={(e) => push({ to: e.target.value, page: undefined })}
           className="w-[145px]"
