@@ -20,6 +20,9 @@ export default async function ExpiringMembersPage({ searchParams }: PageProps) {
   const now = new Date();
   const nowArg = new Date(now.getTime() - 3 * 60 * 60 * 1000);
   const todayStr = nowArg.toISOString().split("T")[0];
+  // Incluir también los que vencieron hasta 2 días atrás (por si no se avisó a tiempo)
+  const fromDate = new Date(nowArg.getTime() - 2 * 24 * 60 * 60 * 1000);
+  const fromStr = fromDate.toISOString().split("T")[0];
   const futureDate = new Date(nowArg.getTime() + days * 24 * 60 * 60 * 1000);
   const futureStr = futureDate.toISOString().split("T")[0];
 
@@ -30,8 +33,8 @@ export default async function ExpiringMembersPage({ searchParams }: PageProps) {
       plans(name),
       members!inner(id, first_name, last_name, phone, email, deleted_at)
     `)
-    .eq("status", "ACTIVO")
-    .gte("end_date", todayStr)
+    .in("status", ["ACTIVO", "VENCIDO"])
+    .gte("end_date", fromStr)
     .lte("end_date", futureStr)
     .is("members.deleted_at", null)
     .order("end_date", { ascending: true });
@@ -48,7 +51,7 @@ export default async function ExpiringMembersPage({ searchParams }: PageProps) {
 
   const rows: MembershipRow[] = (memberships ?? []).map((m) => {
     const end = new Date(m.end_date);
-    const diff = Math.ceil((end.getTime() - new Date(todayStr).getTime()) / (1000 * 60 * 60 * 24));
+    const diff = Math.round((end.getTime() - new Date(todayStr).getTime()) / (1000 * 60 * 60 * 24));
     return { ...m, members: m.members as MembershipRow["members"], plans: m.plans as { name: string } | null, daysLeft: diff };
   });
 
@@ -81,7 +84,7 @@ export default async function ExpiringMembersPage({ searchParams }: PageProps) {
             </h1>
           </div>
           <p className="mt-0.5 text-sm text-gray-400 dark:text-gray-500">
-            {rows.length} membresía{rows.length !== 1 ? "s" : ""} vencen en los próximos {days} días
+            {rows.length} membresía{rows.length !== 1 ? "s" : ""} vencidas o por vencer en {days} días
           </p>
         </div>
 
@@ -119,7 +122,9 @@ export default async function ExpiringMembersPage({ searchParams }: PageProps) {
               if (!member) return null;
               const fullName = `${member.first_name} ${member.last_name}`;
               const urgency =
-                row.daysLeft <= 1
+                row.daysLeft < 0
+                  ? "text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-500/20"
+                  : row.daysLeft <= 1
                   ? "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-500/10"
                   : row.daysLeft <= 3
                   ? "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10"
@@ -156,11 +161,13 @@ export default async function ExpiringMembersPage({ searchParams }: PageProps) {
 
                   {/* Badge días */}
                   <span className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 ${urgency}`}>
-                    {row.daysLeft === 0
+                    {row.daysLeft < 0
+                      ? `Venció hace ${Math.abs(row.daysLeft)} día${Math.abs(row.daysLeft) !== 1 ? "s" : ""}`
+                      : row.daysLeft === 0
                       ? "Vence hoy"
                       : row.daysLeft === 1
                       ? "Vence mañana"
-                      : `${row.daysLeft} días`}
+                      : `Vence en ${row.daysLeft} días`}
                   </span>
 
                   {/* Fecha */}
