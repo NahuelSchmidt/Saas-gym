@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import SettingsForm from "./SettingsForm";
 import BranchesForm from "./branches/BranchesForm";
+import { GymQRCard } from "./GymQRCard";
 
 export const metadata = { title: "Configuración" };
 
@@ -32,6 +33,7 @@ export default async function SettingsPage() {
         </p>
       </div>
       <SettingsForm gym={gym} isOwner={profile.role === "OWNER"} />
+      <GymQRCard gymId={profile.gym_id} gymName={gym?.name ?? "GymFlow"} />
       <BranchesForm branches={branches ?? []} />
     </div>
   );
