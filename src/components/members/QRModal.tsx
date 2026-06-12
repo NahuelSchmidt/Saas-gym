@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { QrCode, Download, X } from "lucide-react";
+import { QrCode, Download, RefreshCw } from "lucide-react";
 
+import { regenerateQrAction } from "./MemberActions";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -21,6 +23,15 @@ interface QRModalProps {
 
 export function QRModal({ memberName, qrCode, memberId }: QRModalProps) {
   const [open, setOpen] = useState(false);
+  const [regenerating, setRegenerating] = useState(false);
+  const router = useRouter();
+
+  async function handleRegenerate() {
+    setRegenerating(true);
+    await regenerateQrAction(memberId);
+    setRegenerating(false);
+    router.refresh();
+  }
 
   // qrCode may be a public URL (image) or a raw token string
   const isImageUrl =
@@ -75,17 +86,28 @@ export function QRModal({ memberName, qrCode, memberId }: QRModalProps) {
           )}
 
           <p className="text-center text-xs text-muted-foreground">
-            Este código QR identifica al miembro de forma única para el control
-            de acceso.
+            Escaneando este código, el socio puede ver su membresía, vencimiento
+            y asistencias desde su celular.
           </p>
         </div>
 
-        {qrCode && isImageUrl && (
-          <Button variant="outline" className="w-full" onClick={handleDownload}>
-            <Download className="mr-2 h-4 w-4" />
-            Descargar QR
+        <div className="flex gap-2">
+          {qrCode && isImageUrl && (
+            <Button variant="outline" className="flex-1" onClick={handleDownload}>
+              <Download className="mr-2 h-4 w-4" />
+              Descargar QR
+            </Button>
+          )}
+          <Button
+            variant="outline"
+            className="flex-1"
+            onClick={handleRegenerate}
+            disabled={regenerating}
+          >
+            <RefreshCw className={`mr-2 h-4 w-4 ${regenerating ? "animate-spin" : ""}`} />
+            {regenerating ? "Generando..." : "Generar QR"}
           </Button>
-        )}
+        </div>
       </DialogContent>
     </Dialog>
   );

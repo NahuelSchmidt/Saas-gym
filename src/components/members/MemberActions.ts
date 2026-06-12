@@ -112,7 +112,7 @@ export async function createMemberAction(
   }
 
   // Generate QR code image and upload to storage
-  const qrValue = member.qr_code ?? member.id;
+  const qrValue = `${process.env.NEXT_PUBLIC_APP_URL}/portal/${member.id}`;
   try {
     const qrDataUrl = await QRCode.toDataURL(qrValue, {
       width: 300,
@@ -278,4 +278,54 @@ export async function deleteMemberAction(id: string): Promise<ActionResult> {
   if (error) return { error: error.message };
 
   redirect("/dashboard/members");
+}
+
+// ── regenerateQrAction ────────────────────────────────────────────────────────
+
+export async function regenerateQrAction(id: string): Promise<ActionResult> {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { error: "No autorizado" };
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("gym_id")
+    .eq("id", user.id)
+    .single();
+  if (!profile?.gym_id) return { error: "No se encontró el gimnasio" };
+
+  const qrValue = `${process.env.NEXT_PUBLIC_APP_URL}/portal/${id}`;
+  const qrDataUrl = await QRCode.toDataURL(qrValue, {
+    width: 300,
+    margin: 2,
+    color: { dark: "#000000", light: "#ffffff" },
+  });
+
+  const base64 = qrDataUrl.split(",")[1];
+  const buffer = Buffer.from(base64, "base64");
+  const qrPath = `${profile.gym_id}/qr-${id}.png`;
+
+  const { error: uploadError } = await supabase.storage
+    .from("member-photos")
+    .upload(qrPath, buffer, { upsert: true, contentType: "image/png" });
+  if (uploadError) return { error: uploadError.message };
+
+  const { data: qrUrlData } = supabase.storage
+    .from("member-photos")
+    .getPublicUrl(qrPath);
+
+  // Forzar URL única para evitar caché de imagen vieja
+  const qrUrl = `${qrUrlData.publicUrl}?v=${Date.now()}`;
+
+  const { error } = await supabase
+    .from("members")
+    .update({ qr_code: qrUrl })
+    .eq("id", id)
+    .eq("gym_id", profile.gym_id);
+  if (error) return { error: error.message };
+
+  return {};
 }
