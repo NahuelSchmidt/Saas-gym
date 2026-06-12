@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 
 export function GymQRCard({ gymId, gymName }: { gymId: string; gymName: string }) {
   const [dataUrl, setDataUrl] = useState<string | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const portalUrl = `${process.env.NEXT_PUBLIC_APP_URL}/portal/g/${gymId}`;
 
