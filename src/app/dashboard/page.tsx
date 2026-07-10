@@ -20,6 +20,15 @@ export default async function DashboardPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/auth/login");
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("gym_id")
+    .eq("id", user.id)
+    .single();
+
+  const gymId = profile?.gym_id;
+  if (!gymId) redirect("/auth/login");
+
   const now = new Date();
   // Argentina es UTC-3: ajustamos para calcular fechas correctamente en horario local
   const ARG_OFFSET_MS = -3 * 60 * 60 * 1000;
@@ -34,7 +43,9 @@ export default async function DashboardPage() {
   const sixMonthsAgoStr = sixMonthsAgoDate.toISOString().split("T")[0];
   const in7DaysDate = new Date(nowArg.getTime() + 7 * 24 * 60 * 60 * 1000);
   const in7DaysStr = in7DaysDate.toISOString().split("T")[0];
-  const nowStr = todayStr; // para comparaciones de "hoy"
+  const tomorrowDate = new Date(nowArg.getTime() + 24 * 60 * 60 * 1000);
+  const tomorrowStr = tomorrowDate.toISOString().split("T")[0];
+  const nowStr = todayStr;
 
 
   const [
@@ -48,12 +59,12 @@ export default async function DashboardPage() {
     { data: recentRaw },
   ] = await Promise.all([
     supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true }).eq("status", "ACTIVO").is("members.deleted_at", null),
-    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", todayStr),
-    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", monthStr),
-    supabase.from("payments").select("amount").eq("status", "PAGADO").gte("payment_date", prevMonthStr).lte("payment_date", prevMonthEndStr),
+    supabase.from("payments").select("amount").eq("gym_id", gymId).eq("status", "PAGADO").gte("payment_date", todayStr).lt("payment_date", tomorrowStr),
+    supabase.from("payments").select("amount").eq("gym_id", gymId).eq("status", "PAGADO").gte("payment_date", monthStr).lte("payment_date", todayStr),
+    supabase.from("payments").select("amount").eq("gym_id", gymId).eq("status", "PAGADO").gte("payment_date", prevMonthStr).lte("payment_date", prevMonthEndStr),
     supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true }).eq("status", "VENCIDO").is("members.deleted_at", null),
     supabase.from("memberships").select("*, members!inner(deleted_at)", { count: "exact", head: true }).eq("status", "ACTIVO").lte("end_date", in7DaysStr).gte("end_date", nowStr).is("members.deleted_at", null),
-    supabase.from("payments").select("amount, payment_date").eq("status", "PAGADO").gte("payment_date", sixMonthsAgoStr).order("payment_date", { ascending: true }),
+    supabase.from("payments").select("amount, payment_date").eq("gym_id", gymId).eq("status", "PAGADO").gte("payment_date", sixMonthsAgoStr).lte("payment_date", todayStr).order("payment_date", { ascending: true }),
     supabase.from("access_logs").select("id, entry_time, access_granted, denial_reason, member_id, members(first_name, last_name)").order("entry_time", { ascending: false }).limit(10),
   ]);
 
