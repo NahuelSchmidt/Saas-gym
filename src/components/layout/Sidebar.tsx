@@ -18,7 +18,7 @@ const navItems = [
   { label: "Planes", href: "/dashboard/plans", icon: CreditCard },
   { label: "Pagos", href: "/dashboard/payments", icon: DollarSign },
   { label: "Productos", href: "/dashboard/products", icon: Package },
-  { label: "Acceso", href: "/dashboard/access", icon: QrCode },
+  { label: "Acceso", href: "/dashboard/access", icon: QrCode, newTab: true },
   { label: "Reportes", href: "/dashboard/reports", icon: BarChart3 },
   { label: "Configuración", href: "/dashboard/settings", icon: Settings },
 ];
@@ -76,6 +76,8 @@ export function Sidebar({ gymName, userName }: SidebarProps) {
             <Link
               key={item.href}
               href={item.href}
+              target={item.newTab ? "_blank" : undefined}
+              rel={item.newTab ? "noopener noreferrer" : undefined}
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                 active
