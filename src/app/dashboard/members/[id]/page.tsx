@@ -128,8 +128,9 @@ export default async function MemberDetailPage({ params }: PageProps) {
     .order("entry_time", { ascending: false })
     .limit(10);
 
-  // Determine active membership
-  const activeMembership = memberships?.find((m) => m.status === "ACTIVO");
+  // Determine active or last expired membership (para mostrar "Renovar" aunque esté vencida)
+  const activeMembership = memberships?.find((m) => m.status === "ACTIVO")
+    ?? memberships?.filter((m) => m.status === "VENCIDO").sort((a, b) => new Date(b.end_date).getTime() - new Date(a.end_date).getTime())[0];
   const fullName = `${member.first_name} ${member.last_name}`;
 
   return (
