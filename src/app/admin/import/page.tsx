@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import { getGyms, importMembers, type MemberRow } from "./actions";
 
-const SECRET = process.env.NEXT_PUBLIC_ADMIN_SECRET;
+const SECRET = "nexagym_admin_2024";
 
 // Columnas que intentamos mapear automáticamente desde el Excel
 const COL_MAP: Record<string, keyof MemberRow> = {
@@ -62,7 +62,7 @@ export default function AdminImportPage() {
 
   function handleAuth(e: React.FormEvent) {
     e.preventDefault();
-    if (secretInput === (SECRET ?? process.env.NEXT_PUBLIC_ADMIN_SECRET)) {
+    if (secretInput === SECRET) {
       setAuthError(false);
       setAuthed(true);
       getGyms().then(setGyms);
