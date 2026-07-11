@@ -47,10 +47,10 @@ export async function middleware(request: NextRequest) {
     return redirectResponse;
   }
 
-  // Redirigir raíz
-  if (pathname === "/") {
+  // Si está logueado y va a la raíz, mandarlo al dashboard
+  if (pathname === "/" && user) {
     const url = request.nextUrl.clone();
-    url.pathname = user ? "/dashboard" : "/auth/login";
+    url.pathname = "/dashboard";
     url.search = "";
     const redirectResponse = NextResponse.redirect(url);
     supabaseResponse.cookies.getAll().forEach((cookie) => {
@@ -58,6 +58,7 @@ export async function middleware(request: NextRequest) {
     });
     return redirectResponse;
   }
+  // Si no está logueado y va a /, mostramos la landing (page.tsx)
 
   return supabaseResponse;
 }
