@@ -64,11 +64,13 @@ export default async function PaymentsPage({
   if (!profile?.gym_id) redirect("/auth/login");
   const gymId = profile.gym_id;
 
-  // ── Date range defaults (current month) ──────────────────────────────────────
+  // ── Date range defaults (current month, Argentina UTC-3) ─────────────────────
   const now = new Date();
-  const defaultFrom = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-01`;
-  const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-  const defaultTo = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
+  const nowArg = new Date(now.getTime() - 3 * 60 * 60 * 1000);
+  const todayStr = nowArg.toISOString().split("T")[0];
+  const defaultFrom = `${nowArg.getUTCFullYear()}-${String(nowArg.getUTCMonth() + 1).padStart(2, "0")}-01`;
+  const lastDay = new Date(Date.UTC(nowArg.getUTCFullYear(), nowArg.getUTCMonth() + 1, 0)).getUTCDate();
+  const defaultTo = `${nowArg.getUTCFullYear()}-${String(nowArg.getUTCMonth() + 1).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
 
   const filterFrom = params.from ?? defaultFrom;
   const filterTo = params.to ?? defaultTo;
@@ -100,7 +102,7 @@ export default async function PaymentsPage({
       .select("amount, id")
       .eq("gym_id", gymId)
       .eq("status", "PAGADO")
-      .eq("payment_date", now.toISOString().split("T")[0]),
+      .eq("payment_date", todayStr),
   ]);
 
   const monthTotal = (monthPaidData ?? []).reduce((s, p) => s + (p.amount ?? 0), 0);
