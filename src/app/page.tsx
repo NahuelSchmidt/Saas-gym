@@ -22,20 +22,34 @@ const LIGHT = {
   ctaGradFrom: "#FCEFE6",
 };
 
+// SVG icons — stroke style, color injected via `color` prop
+const ICONS: Record<string, (color: string) => React.ReactNode> = {
+  table: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg>,
+  money: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v1m0 8v1m-3-5h6m-6 0a3 3 0 0 1 3-3m0 3a3 3 0 0 1 3 3"/></svg>,
+  clipboard: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>,
+  lock: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1" fill={c}/></svg>,
+  users: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+  card: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>,
+  door: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><circle cx="15" cy="13" r="1" fill={c}/></svg>,
+  phone: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>,
+  chart: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>,
+  bell: (c) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>,
+};
+
 const PAIN_POINTS = [
-  { icon: "📋", problem: "Planillas de Excel por todos lados", pain: "Datos de clientes desactualizados, duplicados y difíciles de encontrar cuando los necesitás.", solution: "Un solo panel con toda la info de cada socio" },
-  { icon: "💸", problem: "Clientes que no pagan a tiempo", pain: "Perseguís cobros por WhatsApp y perdés plata todos los meses por cuotas vencidas.", solution: "Cobro automático y recordatorios sin que muevas un dedo" },
-  { icon: "📝", problem: "Altas y bajas a mano", pain: "Cargar un socio nuevo o dar de baja a otro te saca minutos valiosos todos los días.", solution: "Altas, bajas y cambios de plan en segundos" },
-  { icon: "🔐", problem: "Sin control real de accesos", pain: "No sabés quién entrenó hoy ni si un socio con la cuota vencida sigue entrando al gym.", solution: "Control de accesos que bloquea automáticamente a morosos" },
+  { iconKey: "table", problem: "Planillas de Excel por todos lados", pain: "Datos de clientes desactualizados, duplicados y difíciles de encontrar cuando los necesitás.", solution: "Un solo panel con toda la info de cada socio" },
+  { iconKey: "money", problem: "Clientes que no pagan a tiempo", pain: "Perseguís cobros por WhatsApp y perdés plata todos los meses por cuotas vencidas.", solution: "Cobro automático y recordatorios sin que muevas un dedo" },
+  { iconKey: "clipboard", problem: "Altas y bajas a mano", pain: "Cargar un socio nuevo o dar de baja a otro te saca minutos valiosos todos los días.", solution: "Altas, bajas y cambios de plan en segundos" },
+  { iconKey: "lock", problem: "Sin control real de accesos", pain: "No sabés quién entrenó hoy ni si un socio con la cuota vencida sigue entrando al gym.", solution: "Control de accesos que bloquea automáticamente a morosos" },
 ];
 
 const FEATURES = [
-  { icon: "👥", accent: "rgba(255,90,31,0.4)", accentBg: "rgba(255,90,31,0.14)", title: "Control de membresías", desc: "Gestioná altas, bajas, congelamientos y cambios de plan desde un solo lugar, sin papeles." },
-  { icon: "💳", accent: "rgba(198,255,58,0.4)", accentBg: "rgba(198,255,58,0.12)", title: "Cobros automáticos", desc: "Débito automático, Mercado Pago y recordatorios de vencimiento que cobran por vos." },
-  { icon: "🚪", accent: "rgba(255,90,31,0.4)", accentBg: "rgba(255,90,31,0.14)", title: "Accesos y asistencia", desc: "Control biométrico o por QR que bloquea el acceso a socios con cuotas vencidas." },
-  { icon: "📱", accent: "rgba(198,255,58,0.4)", accentBg: "rgba(198,255,58,0.12)", title: "App para tus clientes", desc: "Tus socios reservan clases, ven su cuota y pagan desde el celular sin llamarte." },
-  { icon: "📊", accent: "rgba(255,90,31,0.4)", accentBg: "rgba(255,90,31,0.14)", title: "Reportes y estadísticas", desc: "Ingresos, bajas, ocupación de clases y proyección de caja, siempre a mano." },
-  { icon: "🔔", accent: "rgba(198,255,58,0.4)", accentBg: "rgba(198,255,58,0.12)", title: "Recordatorios automáticos", desc: "Avisos de vencimiento por WhatsApp y email antes de que el socio se atrase." },
+  { iconKey: "users", accentBg: "rgba(255,90,31,0.12)", iconColor: ACCENT_ORANGE, title: "Control de membresías", desc: "Gestioná altas, bajas, congelamientos y cambios de plan desde un solo lugar, sin papeles." },
+  { iconKey: "card", accentBg: "rgba(255,90,31,0.12)", iconColor: ACCENT_ORANGE, title: "Cobros automáticos", desc: "Débito automático, Mercado Pago y recordatorios de vencimiento que cobran por vos." },
+  { iconKey: "door", accentBg: "rgba(255,90,31,0.12)", iconColor: ACCENT_ORANGE, title: "Accesos y asistencia", desc: "Control biométrico o por QR que bloquea el acceso a socios con cuotas vencidas." },
+  { iconKey: "phone", accentBg: "rgba(255,90,31,0.12)", iconColor: ACCENT_ORANGE, title: "App para tus clientes", desc: "Tus socios reservan clases, ven su cuota y pagan desde el celular sin llamarte." },
+  { iconKey: "chart", accentBg: "rgba(255,90,31,0.12)", iconColor: ACCENT_ORANGE, title: "Reportes y estadísticas", desc: "Ingresos, bajas, ocupación de clases y proyección de caja, siempre a mano." },
+  { iconKey: "bell", accentBg: "rgba(255,90,31,0.12)", iconColor: ACCENT_ORANGE, title: "Recordatorios automáticos", desc: "Avisos de vencimiento por WhatsApp y email antes de que el socio se atrase." },
 ];
 
 const COMPARISON_ROWS = [
@@ -273,7 +287,7 @@ export default function LandingPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 20 }}>
               {PAIN_POINTS.map(p => (
                 <div key={p.problem} className="nx-hover-lift" style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 16, padding: 28, transition: "border-color .2s, transform .2s" }}>
-                  <div style={{ fontSize: 26, marginBottom: 16 }}>{p.icon}</div>
+                  <div style={{ width: 44, height: 44, borderRadius: 10, background: "rgba(255,90,31,0.12)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>{ICONS[p.iconKey]?.(ACCENT_ORANGE)}</div>
                   <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 16, marginBottom: 8 }}>{p.problem}</div>
                   <div style={{ fontSize: 14, lineHeight: 1.5, color: t.textMuted, marginBottom: 12 }}>{p.pain}</div>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, color: "#4C8A17", fontWeight: 600 }}>
@@ -327,7 +341,7 @@ export default function LandingPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 24 }}>
               {FEATURES.map(f => (
                 <div key={f.title} className="nx-hover-orange" style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 18, padding: 30, transition: "border-color .2s" }}>
-                  <div style={{ width: 48, height: 48, borderRadius: 12, background: f.accentBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, marginBottom: 20 }}>{f.icon}</div>
+                  <div style={{ width: 48, height: 48, borderRadius: 12, background: f.accentBg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>{ICONS[f.iconKey]?.(f.iconColor)}</div>
                   <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 18, marginBottom: 10 }}>{f.title}</div>
                   <div style={{ fontSize: 14.5, lineHeight: 1.55, color: t.textMuted }}>{f.desc}</div>
                 </div>
