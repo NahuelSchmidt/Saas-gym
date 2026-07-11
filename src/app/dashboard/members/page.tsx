@@ -264,27 +264,23 @@ export default async function MembersPage({ searchParams }: PageProps) {
                       {/* Membresía activa */}
                       <TableCell className="hidden xl:table-cell">
                         {activeMembership ? (
-                          <div className="text-sm">
-                            <p className="font-medium leading-none">
-                              {activeMembership.plans?.name ?? "—"}
-                            </p>
-                            <p className="mt-0.5 text-xs text-muted-foreground">
-                              Vence {formatDate(activeMembership.end_date)}
-                            </p>
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-sm font-medium leading-none">{activeMembership.plans?.name ?? "—"}</span>
+                              <span className="inline-flex items-center rounded-full bg-emerald-100 dark:bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400">Activa</span>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Vence {formatDate(activeMembership.end_date)}</p>
                           </div>
                         ) : expiredMembership ? (
-                          <div className="text-sm">
-                            <p className="font-medium leading-none text-red-500">
-                              {expiredMembership.plans?.name ?? "—"}
-                            </p>
-                            <p className="mt-0.5 text-xs text-red-400">
-                              Venció {formatDate(expiredMembership.end_date)}
-                            </p>
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-sm font-medium leading-none">{expiredMembership.plans?.name ?? "—"}</span>
+                              <span className="inline-flex items-center rounded-full bg-red-100 dark:bg-red-500/20 px-2 py-0.5 text-xs font-semibold text-red-600 dark:text-red-400">Vencida</span>
+                            </div>
+                            <p className="text-xs text-red-400">Venció {formatDate(expiredMembership.end_date)}</p>
                           </div>
                         ) : (
-                          <span className="text-sm text-muted-foreground">
-                            Sin membresía
-                          </span>
+                          <span className="text-sm text-muted-foreground">Sin membresía</span>
                         )}
                       </TableCell>
 
