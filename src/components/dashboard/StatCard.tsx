@@ -17,7 +17,7 @@ interface StatCardProps {
 }
 
 const colorMap: Record<ColorScheme, { iconColor: string; dot: string }> = {
-  blue:   { iconColor: "text-blue-500",    dot: "bg-blue-500" },
+  blue:   { iconColor: "text-orange-500",   dot: "bg-orange-500" },
   green:  { iconColor: "text-emerald-500", dot: "bg-emerald-500" },
   violet: { iconColor: "text-violet-500",  dot: "bg-violet-500" },
   red:    { iconColor: "text-red-500",     dot: "bg-red-500" },

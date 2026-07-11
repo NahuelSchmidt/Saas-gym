@@ -55,11 +55,11 @@ export function Sidebar({ gymName, userName }: SidebarProps) {
 
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-5 py-4 border-b border-gray-100 dark:border-white/10">
-        <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600 shrink-0">
+        <div className="flex items-center justify-center w-7 h-7 rounded-lg shrink-0" style={{ background: "#FF5A1F" }}>
           <Dumbbell className="w-4 h-4 text-white" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-none">GymFlow</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-gray-100 leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.01em" }}>NEXA<span style={{ color: "#FF5A1F" }}>GYM</span></p>
           <p className="mt-0.5 text-xs text-gray-400 dark:text-gray-500 truncate">{gymName}</p>
         </div>
         <button onClick={() => setMobileOpen(false)} className="md:hidden text-gray-400 hover:text-gray-600">
@@ -81,11 +81,11 @@ export function Sidebar({ gymName, userName }: SidebarProps) {
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                 active
-                  ? "bg-blue-50 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400"
+                  ? "bg-orange-50 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400"
                   : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-gray-100"
               }`}
             >
-              <Icon className={`w-4 h-4 shrink-0 ${active ? "text-blue-600 dark:text-blue-400" : "text-gray-400"}`} />
+              <Icon className={`w-4 h-4 shrink-0 ${active ? "text-orange-600 dark:text-orange-400" : "text-gray-400"}`} />
               <span>{item.label}</span>
             </Link>
           );
@@ -97,7 +97,7 @@ export function Sidebar({ gymName, userName }: SidebarProps) {
 
         {/* User */}
         <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg">
-          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-semibold shrink-0">
+          <div className="flex items-center justify-center w-6 h-6 rounded-full text-white text-[10px]" style={{ background: "#FF5A1F" }} font-semibold shrink-0">
             {getInitials(userName)}
           </div>
           <p className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate flex-1">{userName}</p>
