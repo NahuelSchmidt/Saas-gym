@@ -97,7 +97,7 @@ export function Sidebar({ gymName, userName }: SidebarProps) {
 
         {/* User */}
         <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg">
-          <div className="flex items-center justify-center w-6 h-6 rounded-full text-white text-[10px]" style={{ background: "#FF5A1F" }} font-semibold shrink-0">
+          <div className="flex items-center justify-center w-6 h-6 rounded-full text-white text-[10px] font-semibold shrink-0" style={{ background: "#FF5A1F" }}>
             {getInitials(userName)}
           </div>
           <p className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate flex-1">{userName}</p>
