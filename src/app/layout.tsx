@@ -12,8 +12,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "GymFlow",
-    template: "%s | GymFlow",
+    default: "NexaGym",
+    template: "%s | NexaGym",
   },
   description: "Plataforma de gestión integral para gimnasios",
 };

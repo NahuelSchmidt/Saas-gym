@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { createBrowserClient } from "@supabase/ssr";
 
 const ACCENT_ORANGE = "#FF5A1F";
@@ -182,7 +183,8 @@ export default function LandingPage() {
 
       {/* NAV */}
       <nav style={{ position: "sticky", top: 0, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 6vw", background: t.navBg, backdropFilter: "blur(10px)", borderBottom: `1px solid ${t.borderSubtle}` }}>
-        <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 22, letterSpacing: "-0.02em", display: "flex", alignItems: "center" }}>
+        <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 22, letterSpacing: "-0.02em", display: "flex", alignItems: "center", gap: 8 }}>
+          <Image src="/logos/nexagym-isotype-transparent.png" alt="NexaGym" width={28} height={28} priority />
           NEXA<span style={{ color: ACCENT_ORANGE }}>GYM</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
@@ -512,7 +514,10 @@ export default function LandingPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 32, marginBottom: 40 }} className="nx-footer-grid">
             <div>
-              <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 20, marginBottom: 12 }}>NEXA<span style={{ color: ACCENT_ORANGE }}>GYM</span></div>
+              <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 20, marginBottom: 12, display: "flex", alignItems: "center", gap: 8 }}>
+                <Image src="/logos/nexagym-isotype-transparent.png" alt="NexaGym" width={24} height={24} />
+                NEXA<span style={{ color: ACCENT_ORANGE }}>GYM</span>
+              </div>
               <p style={{ fontSize: 14, color: t.textMuted, lineHeight: 1.6, maxWidth: 280 }}>El sistema de gestión para gimnasios, boxes de crossfit y estudios que quieren crecer sin perder el control.</p>
             </div>
             <div>
@@ -555,7 +560,8 @@ export default function LandingPage() {
         <div onClick={() => setLoginOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(0,0,0,0.55)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
           <div onClick={e => e.stopPropagation()} style={{ background: isDark ? "#161A20" : "#FFFFFF", border: `1px solid ${t.border}`, borderRadius: 20, padding: "40px 36px", width: "100%", maxWidth: 420, boxShadow: "0 32px 80px rgba(0,0,0,0.35)", position: "relative" }}>
             <button onClick={() => setLoginOpen(false)} style={{ position: "absolute", top: 16, right: 16, border: "none", background: "transparent", cursor: "pointer", color: t.textMuted, fontSize: 20, lineHeight: 1 }}>✕</button>
-            <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 22, marginBottom: 6 }}>
+            <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 22, marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
+              <Image src="/logos/nexagym-isotype-transparent.png" alt="NexaGym" width={26} height={26} />
               NEXA<span style={{ color: ACCENT_ORANGE }}>GYM</span>
             </div>
             <p style={{ color: t.textMuted, fontSize: 14, margin: "0 0 28px" }}>Ingresá a tu panel de administración</p>

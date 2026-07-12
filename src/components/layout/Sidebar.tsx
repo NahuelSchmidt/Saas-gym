@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, Users, CreditCard, DollarSign, QrCode,
-  BarChart3, Settings, LogOut, Dumbbell, X, Menu, Sun, Moon, Package, Bell,
+  BarChart3, Settings, LogOut, X, Menu, Sun, Moon, Package, Bell,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getInitials } from "@/lib/utils";
@@ -55,8 +56,8 @@ export function Sidebar({ gymName, userName }: SidebarProps) {
 
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-5 py-4 border-b border-gray-100 dark:border-white/10">
-        <div className="flex items-center justify-center w-7 h-7 rounded-lg shrink-0" style={{ background: "#FF5A1F" }}>
-          <Dumbbell className="w-4 h-4 text-white" />
+        <div className="flex items-center justify-center w-7 h-7 shrink-0">
+          <Image src="/logos/nexagym-isotype-transparent.png" alt="NexaGym" width={28} height={28} priority />
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-bold text-gray-900 dark:text-gray-100 leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.01em" }}>NEXA<span style={{ color: "#FF5A1F" }}>GYM</span></p>
