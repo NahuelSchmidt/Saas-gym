@@ -12,7 +12,7 @@ export default function LoginPage() {
   const router = useRouter();
   const supabase = createClient();
 
-  const inputClass = "w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20";
+  const inputClass = "w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400/20";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,10 +45,12 @@ export default function LoginPage() {
 
         {/* Brand */}
         <div className="mb-8 flex flex-col items-center gap-2">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 shadow-md">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl shadow-md" style={{ background: "#FF5A1F" }}>
             <Dumbbell className="h-6 w-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">GymFlow</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.02em" }}>
+            NEXA<span style={{ color: "#FF5A1F" }}>GYM</span>
+          </h1>
           <p className="text-sm text-slate-500">Iniciá sesión para continuar</p>
         </div>
 
@@ -86,7 +88,8 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all disabled:cursor-not-allowed disabled:opacity-60"
+              style={{ background: "#FF5A1F" }}
             >
               {loading ? (<><Loader2 className="h-4 w-4 animate-spin" />Iniciando sesión…</>) : "Iniciar sesión"}
             </button>
@@ -95,7 +98,7 @@ export default function LoginPage() {
       </div>
 
       <p className="mt-6 text-center text-xs text-slate-400">
-        © {new Date().getFullYear()} GymFlow. Todos los derechos reservados.
+        © {new Date().getFullYear()} NexaGym. Todos los derechos reservados.
       </p>
     </div>
   );
